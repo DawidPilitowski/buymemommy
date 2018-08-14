@@ -18,4 +18,5 @@ public class MainCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String nameCategory;
 }
