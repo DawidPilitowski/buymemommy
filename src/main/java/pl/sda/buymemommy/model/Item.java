@@ -24,6 +24,6 @@ public class Item {
     private int ageFrom;
     private int ageTo;
 
-    @OneToMany
+    @ManyToMany
     List<Category> categoryList;
 }
