@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: links">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+
+<div class="container marketing">
+    <div class="row">
+        <form th:action="@{/login}" method="post">
+            hello
+        </form>
+    </div>
+</div>
+<div th:replace="fragments :: footer"></div>
+
+</body>
+</html>
