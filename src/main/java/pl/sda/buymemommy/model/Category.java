@@ -15,11 +15,11 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @OneToOne
-    private MainCategory mainCategory;
-    @OneToOne
-    private Subcategory subcategory;
+    private String categoryName;
+//    @OneToOne
+//    private MainCategory mainCategory;
+//    @OneToOne
+//    private Subcategory subcategory;
 
 
 

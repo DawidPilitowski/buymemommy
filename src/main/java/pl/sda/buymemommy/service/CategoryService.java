@@ -8,6 +8,7 @@ import pl.sda.buymemommy.model.Subcategory;
 import pl.sda.buymemommy.repository.CategoryRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -23,14 +24,24 @@ public class CategoryService {
 
     public void saveCategory(Category category) {
         categoryRepository.save(category);
-
     }
 
-    public MainCategory saveMainCategory(MainCategory category) {
-
+    public MainCategory saveMainCategory(MainCategory categoryM) {
+return null;
+    }
+    public Subcategory saveSubCategory(Subcategory categoryS) {
+return null;
     }
 
-    public Subcategory saveSubCategory(Subcategory category) {
-
+    public void removeCategory(Long id) {
+        categoryRepository.deleteById(id);
     }
+
+    public Optional<Category> find(Long id) {
+        return  categoryRepository.findById(id);
+    }
+
+
+
+
 }

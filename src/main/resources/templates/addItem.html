@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<div class="container marketing">
+    <div class="row">
+        <form th:action="@{/item/addItem}" th:object="${item}" method="post">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="itemName">Nazwa produktu:</label>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control" id="itemName" th:field="*{itemName}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="descritpion">Opis produktu:</label>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control" id="descritpion" th:field="*{description}">
+                </div>
+            </div>
+                <div class="row">
+                <div class="col-md-3">
+                    <label for="price">Cena:</label>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control" id="price" th:field="*{price}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="gender">Dla chłopca/Dla dziewczynki:</label>
+                </div>
+                <div class="col-md-5">
+                    <input type="radio" name="gender" id="girl" th:value="GIRL" th:field="*{gender}">Dla dziewczynki<br>
+                    <input type="radio" name="gender" id="boy" th:value="BOY" th:field="*{gender}">Dla chłopca<br>
+                    <input type="radio" name="gender" id="both" th:value="BOTH" th:field="*{gender}">Dla wszystkich<br>
+                </div>
+            </div>
+            <div class="row">
+                <!--<div class="col-md-3">-->
+                    <!--<label for="categoryList">Kategoria produktu:</label>-->
+                <!--</div>-->
+                <!--<div class="col-md-5">-->
+                    <!--<select class="form-control" id="categoryList" th:field="*{category}">-->
+                        <!--<option th:each="revent : ${events}"-->
+                                <!--th:text="${revent.eventName}"-->
+                                <!--th:value="${revent.id}"></option>-->
+                    <!--</select>-->
+                <!--</div>-->
+
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input class="form-control" type="submit" th:value="Submit">
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
