@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.sda.buymemommy.model.AppUser;
-import pl.sda.buymemommy.repository.AppUserRepository;
+import pl.sda.buymemommy.model.UserModel;
+import pl.sda.buymemommy.repository.IUserRepository;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -20,16 +20,16 @@ import java.util.Set;
 @Service
 public class AppUserDetailsService implements UserDetailsService {
     @Autowired
-    private AppUserRepository appUserRepository;
+    private IUserRepository iUserRepository;
 
     @Autowired
     private BCryptPasswordEncoder bcryptPasswordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<AppUser> user = appUserRepository.findByUsername(username);
+        Optional<UserModel> user = iUserRepository.findByUsername(username);
         if (user.isPresent()) {
-            AppUser appUser = user.get();
+            UserModel appUser = user.get();
             return new User(
                     appUser.getUsername(),
                     appUser.getPassword(),

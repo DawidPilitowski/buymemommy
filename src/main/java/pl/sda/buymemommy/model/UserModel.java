@@ -1,16 +1,18 @@
 package pl.sda.buymemommy.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
 @Entity
 @Data
-public class AppUser {
+public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,11 +21,12 @@ public class AppUser {
 
     private String name;
     private String surname;
+    private String userSurname;
+    private String address;
 
-    public AppUser() {
-    }
+    private LocalDate registerDate;
 
-    public AppUser(String username, String password) {
+    public UserModel(String username, String password) {
         this.username = username;
         this.password = password;
     }
