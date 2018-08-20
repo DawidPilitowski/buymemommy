@@ -43,16 +43,16 @@
                 </div>
             </div>
             <div class="row">
-                <!--<div class="col-md-3">-->
-                    <!--<label for="categoryList">Kategoria produktu:</label>-->
-                <!--</div>-->
-                <!--<div class="col-md-5">-->
-                    <!--<select class="form-control" id="categoryList" th:field="*{category}">-->
-                        <!--<option th:each="revent : ${events}"-->
-                                <!--th:text="${revent.eventName}"-->
-                                <!--th:value="${revent.id}"></option>-->
-                    <!--</select>-->
-                <!--</div>-->
+                <div class="col-md-3">
+                    <label for="categoryList">Kategoria produktu:</label>
+                </div>
+                <div class="col-md-5">
+                    <select class="form-control" id="categoryList" th:field="*{categoryList}">
+                        <option th:each="category : ${categories}"
+                                th:text="${category.categoryName}"
+                                th:value="${category.id}"></option>
+                    </select>
+                </div>
 
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
