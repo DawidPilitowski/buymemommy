@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.sda.buymemommy.model.Category;
 import pl.sda.buymemommy.model.Item;
 import pl.sda.buymemommy.model.dto.ItemDto;
@@ -65,15 +64,19 @@ public class ItemController {
                     item.getItemName(),
                     item.getDescription(),
                     item.getPrice());
-
             model.addAttribute("itemDto", itemDto);
-            return "itemDetails";
-        }else{
-            return "error";
-        }
+        }return "itemDetails";
     }
     @PostMapping(path = "/details")
-    public String setItemDetails(ItemDto itemDto) {
+    public String setItemsDetails(Item item) {
+            ItemDto modifiedItem = new ItemDto(
+                    item.getId(),
+                    item.getItemName(),
+                    item.getDescription(),
+                    item.getPrice());
 
+       itemService.save(item);
+       return "redirect:/item/itemList";
     }
+
 }

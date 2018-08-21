@@ -26,4 +26,6 @@ public class Item {
 
     @ManyToMany
     List<Category> categoryList;
+
+
 }

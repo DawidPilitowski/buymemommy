@@ -2,8 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/theme.css}">
     <title>Lista produktów</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
 </head>
 <body>
 
@@ -31,10 +33,10 @@
             <div class="col-md-2"><p th:text="${item.getAgeTo()}"></p></div>
             <div class="col-md-2 row">
                 <div class="col-md-6"><!--usuwanie-->
-                    <a th:href="@{'/item/remove/' + ${item.getId()}}">Remove</a>
+                    <a th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a>
                 </div>
                 <div class="col-md-6"><!--szczegoly-->
-                    <a th:href="@{'/details/' + ${item.getId()}}">Details</a>
+                    <a th:href="@{'/item/details/' + ${item.getId()}}">Edytuj</a>
                 </div>
             </div>
         </div>

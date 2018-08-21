@@ -2,9 +2,8 @@ package pl.sda.buymemommy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.sda.buymemommy.model.Category;
-import pl.sda.buymemommy.model.Gender;
 import pl.sda.buymemommy.model.Item;
+import pl.sda.buymemommy.model.dto.ItemDto;
 import pl.sda.buymemommy.repository.ItemRepository;
 
 import java.util.List;
@@ -15,6 +14,7 @@ public class ItemService {
 
     @Autowired
     private ItemRepository itemRepository;
+
 
     @Autowired
     private CategoryService categoryService;
@@ -38,6 +38,7 @@ public class ItemService {
     public Optional<Item> find(Long id) {
         return itemRepository.findById(id);
     }
+
 
 }
 
