@@ -1,26 +1,25 @@
-package pl.sda.buymemommy.model;
+package pl.sda.buymemommy.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.buymemommy.model.Category;
+import pl.sda.buymemommy.model.Gender;
 
 import javax.persistence.*;
-
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class ItemDto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String categoryName;
-//    @OneToOne
-//    private MainCategory mainCategory;
-//    @OneToOne
-//    private Subcategory subcategory;
-
-
+    private String itemName;
+    private String description;
+    private String price;
 
 }
