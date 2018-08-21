@@ -21,10 +21,5 @@ public class ItemDto {
     private String itemName;
     private String description;
     private String price;
-    private Gender gender;
-    private int ageFrom;
-    private int ageTo;
 
-    @ManyToMany
-    List<Category> categoryList;
 }
