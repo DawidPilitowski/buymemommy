@@ -34,6 +34,24 @@ public class ItemController {
         return "itemList";
     }
 
+    @GetMapping(path = "/itemList/{phrase}")
+    public String itemList(Model model, @PathVariable(name = "phrase") String phrase) {
+        List<Item> itemList;
+        if (!phrase.isEmpty()) {
+            itemList = itemService.searchByName(phrase);
+            model.addAttribute("itemList", itemList);
+        }
+        return "itemList";
+    }
+
+
+
+    /*@GetMapping(path = "/search/{phrase}")
+    public String searchItem(Model model, @PathVariable(name = "phrase") String phrase) {
+        model.addAttribute("itemList", items);
+        return "itemList";
+    }*/
+
     @GetMapping(path = "/addItem")
     public String add(Model model) {
         Item item = new Item();
@@ -54,29 +72,31 @@ public class ItemController {
         itemService.removeItem(id);
         return "redirect:/item/itemList";
     }
+
     @GetMapping(path = "/details/{id}")
-    public String detailsOfItem(Model model, @PathVariable(name="id")Long id){
-        Optional<Item> itemOptional= itemService.find(id);
+    public String detailsOfItem(Model model, @PathVariable(name = "id") Long id) {
+        Optional<Item> itemOptional = itemService.find(id);
         if (itemOptional.isPresent()) {
-            Item item= itemOptional.get();
-            ItemDto itemDto= new ItemDto(
+            Item item = itemOptional.get();
+            ItemDto itemDto = new ItemDto(
                     item.getId(),
                     item.getItemName(),
                     item.getDescription(),
                     item.getPrice());
             model.addAttribute("itemDto", itemDto);
-        }return "itemDetails";
+        }
+        return "itemDetails";
     }
+
     @PostMapping(path = "/details")
     public String setItemsDetails(Item item) {
-            ItemDto modifiedItem = new ItemDto(
-                    item.getId(),
-                    item.getItemName(),
-                    item.getDescription(),
-                    item.getPrice());
+        ItemDto modifiedItem = new ItemDto(
+                item.getId(),
+                item.getItemName(),
+                item.getDescription(),
+                item.getPrice());
 
-       itemService.save(item);
-       return "redirect:/item/itemList";
+        itemService.save(item);
+        return "redirect:/item/itemList";
     }
-
 }

@@ -147,3 +147,7 @@
 .error_message{
     color:red !important
 }
+.cell-justified{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}

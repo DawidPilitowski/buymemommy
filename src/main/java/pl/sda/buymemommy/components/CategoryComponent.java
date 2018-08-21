@@ -1,52 +1,78 @@
-//package pl.sda.buymemommy.components;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Component;
-//import pl.sda.buymemommy.model.MainCategory;
-//import pl.sda.buymemommy.model.Subcategory;
-//import pl.sda.buymemommy.repository.CategoryRepository;
-//import pl.sda.buymemommy.service.CategoryService;
-//
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.stream.Collectors;
-//
-//@Component
-//public class CategoryComponent {
-//    @Autowired
-//    private CategoryService categoryService;
-//    private HashMap<MainCategory, List<Subcategory>> categoryMap;
-//
-//    public CategoryComponent() {
-//        List<Subcategory> subcategories= new ArrayList<>();
-//        Subcategory sub1 = new Subcategory(null,"Edukacyjne");
-//        Subcategory sub2 = new Subcategory(null,"Planszowe");
-//        Subcategory sub3 = new Subcategory(null,"Komputerowe");
-//        Subcategory sub4 = new Subcategory(null,"Zręcznośćiowe");
-//        Subcategory sub5 = new Subcategory(null,"Logiczne");
-//        Subcategory sub6 = new Subcategory(null,"Słowne i liczbowe");
-//        Subcategory sub7 = new Subcategory(null,"Karciane");
-//
-//        subcategories.add(sub1);
-//        subcategories.add(sub2);
-//        subcategories.add(sub3);
-//        subcategories.add(sub4);
-//        subcategories.add(sub5);
-//        subcategories.add(sub6);
-//        subcategories.add(sub7);
-//
-//        MainCategory mainCategory = new MainCategory(null, "Gry");
-//
-//        categoryMap.put(mainCategory, subcategories);
-//
-//        for(MainCategory category : categoryMap.keySet()){
-//            categoryService.saveMainCategory(category);
-//        }
-//
-//        List<Subcategory> subcategoriesList = categoryMap.values().stream().flatMap(List::stream).collect(Collectors.toList());
-//        for(Subcategory category : subcategoriesList){
-//            categoryService.saveSubCategory(category);
-//        }
-//    }
-//}
+package pl.sda.buymemommy.components;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import pl.sda.buymemommy.model.Category;
+import pl.sda.buymemommy.model.MainCategory;
+import pl.sda.buymemommy.model.Subcategory;
+import pl.sda.buymemommy.repository.CategoryRepository;
+import pl.sda.buymemommy.service.CategoryService;
+import sun.applet.Main;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Component
+public class CategoryComponent {
+
+    private CategoryService categoryService;
+
+    private HashMap<MainCategory, List<Subcategory>> categoryMap = new HashMap<>();
+
+    @Autowired
+    public CategoryComponent(CategoryService categoryService) {
+        this.categoryService = categoryService;
+
+        createCategory("Gry",
+                "Edukacyjne",
+                "Planszowe",
+                "Komputerowe",
+                "Zręcznościowe",
+                "Strategiczne",
+                "Logiczne",
+                "Słowne i liczbowe",
+                "Karciane",
+                "Quizy",
+                "Pozostałe");
+
+        createCategory("Klocki",
+                "LEGO",
+                "Cobi",
+                "Mega blocks",
+                "Magnetyczne",
+                "Drewniane",
+                "Wafle",
+                "Pozostałe");
+
+        createCategory("Zabawki edukacyjne",
+                "Instrumenty muzyczne",
+                "Książeczki",
+                "Sortery",
+                "Stoliki i stojaki gimnastyczne",
+                "Układanki i przeplatanki",
+                "Tablety, telefony i komputery",
+                "Pozostałe");
+
+        createCategory("Puzzle",
+                "Tradycyjne"
+                );
+    }
+
+    private void createCategory(String mainCategoryName, String... subcategoriesNames) {
+        List<Subcategory> subcategories = new ArrayList<>();
+        for (String nameOfSub : subcategoriesNames) {
+            subcategories.add(new Subcategory(null, nameOfSub));
+        }
+
+        MainCategory mainCategory = new MainCategory(null, mainCategoryName);
+
+        for (Subcategory subcategory : subcategories) {
+            Category category = new Category(null, mainCategory, subcategory);
+            categoryService.checkAndSaveIfNotExists(category);
+        }
+        categoryMap.put(mainCategory, subcategories);
+    }
+}

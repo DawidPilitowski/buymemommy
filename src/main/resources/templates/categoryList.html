@@ -20,7 +20,7 @@
         </div>
         <div class="row table-row" th:each="category : ${categoryList}">
             <div class="col-md-6"><p th:text="${category.getId()}"></p></div>
-            <div class="col-md-6"><p th:text="${category.getCategoryName()}"></p></div>
+            <div class="col-md-6"><p th:text="${category.getMainCategory().getNameCategory()}"></p></div>
             <div class="col-md-2 row">
                 <div class="col-md-6"><!--usuwanie-->
                     <a th:href="@{'/remove/' + ${category.getId()}}">Usuń</a>

@@ -6,8 +6,7 @@ import pl.sda.buymemommy.model.Item;
 import pl.sda.buymemommy.model.dto.ItemDto;
 import pl.sda.buymemommy.repository.ItemRepository;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ItemService {
@@ -40,6 +39,17 @@ public class ItemService {
     }
 
 
+    public List<Item> searchByName(String name) {
+        String nameToLowerCase = name.toLowerCase();
+        String words[] = nameToLowerCase.split("\\s+");
+        Set<Item> items = new HashSet<>();
+        for (String word : words) {
+            items.addAll(itemRepository.findAllByItemName(word));
+        }
+        List<Item> itemList = new ArrayList<>();
+        itemList.addAll(items);
+        return itemList;
+    }
 }
 
 
