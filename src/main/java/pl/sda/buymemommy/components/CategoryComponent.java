@@ -27,38 +27,88 @@ public class CategoryComponent {
         this.categoryService = categoryService;
 
         createCategory("Gry",
-                "Edukacyjne",
-                "Planszowe",
-                "Komputerowe",
-                "Zręcznościowe",
-                "Strategiczne",
-                "Logiczne",
-                "Słowne i liczbowe",
-                "Karciane",
-                "Quizy",
-                "Pozostałe");
+                "edukacyjne",
+                "planszowe",
+                "komputerowe",
+                "zręcznościowe",
+                "strategiczne",
+                "logiczne",
+                "słowne i liczbowe",
+                "karciane",
+                "quizy",
+                "pozostałe");
 
         createCategory("Klocki",
                 "LEGO",
                 "Cobi",
                 "Mega blocks",
-                "Magnetyczne",
-                "Drewniane",
-                "Wafle",
-                "Pozostałe");
+                "magnetyczne",
+                "drewniane",
+                "wafle",
+                "pozostałe");
 
         createCategory("Zabawki edukacyjne",
-                "Instrumenty muzyczne",
-                "Książeczki",
-                "Sortery",
-                "Stoliki i stojaki gimnastyczne",
-                "Układanki i przeplatanki",
-                "Tablety, telefony i komputery",
-                "Pozostałe");
+                "instrumenty muzyczne",
+                "książeczki",
+                "sortery",
+                "stoliki i stojaki gimnastyczne",
+                "układanki i przeplatanki",
+                "tablety, telefony i komputery",
+                "pozostałe");
 
         createCategory("Puzzle",
-                "Tradycyjne"
+                "tradycyjne",
+                "piankowe",
+                "3D/4D",
+                "drewniane",
+                "pozostałe"
                 );
+        createCategory("Pojazdy",
+                "wózki",
+                "pchacze",
+                "rowerki",
+                "hulajnogi",
+                "akumulatorowe",
+                "kolejki i akcesoria",
+                "autka i akcesoria"
+        );
+//        createCategory("Zabawki do kąpieli", null);
+        createCategory("Pluszaki",
+                "tradycyjne",
+                "edukacyjne",
+                "interaktywne");
+
+        createCategory("Zabawki z bajek i reklam",
+                "Auta",
+                "Bing",
+                "Masza i niedzwiedź",
+                "Świnka Peppa",
+                "Kraina Lodu",
+                "Kubuś Puchatek");
+
+        createCategory("Zabawki ogrodowe",
+                "domki",
+                "baseny",
+                "zjeżdzalnie",
+                "trampoliny",
+                "piaskownice");
+
+        createCategory("Lalki",
+                "bobasy",
+                "księżniczki i wróżki",
+                "barbie",
+                "szmaciane",
+                "domki, meble dla lalek",
+                "wózki dla lalek");
+
+        createCategory("Niemowlęce",
+                "grzechotki",
+                "przywieszki",
+                "maty i stojaki gimnastyczne",
+                "stoliki interaktywne",
+                "bujaczki i leżaczki",
+                "karuzele i pozytywki");
+
     }
 
     private void createCategory(String mainCategoryName, String... subcategoriesNames) {
