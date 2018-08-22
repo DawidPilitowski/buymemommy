@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Profil</title>
+</head>
+<body>
+
+<div class="container myContainer" th:object="${profile}">
+    <div class="jumbotron">
+        <h6 class="display-3" th:text="${'Witaj ' + profile.getUsername() + '!'}"></h6>
+        <hr class="my-4"/>
+        <fieldset>
+            <div class="form-group row">
+                <label class="myProfileTxt">Nazwa użytkownika:</label>
+                <div class="col-sm-3 myProfileTxt" th:text="${profile.getUsername()}"></div>
+            </div>
+            <div class="form-group row">
+                <label class="myProfileTxt">Nazwisko:</label>
+                <div class="col-sm-3 myProfileTxt" th:text="${profile.getSurname()}"></div>
+            </div>
+            <div class="form-group row">
+                <label class="myProfileTxt">Email:</label>
+                <div class="col-sm-3 myProfileTxt" th:text="${profile.getEmail()}"></div>
+            </div>
+            <div class="form-group row">
+                <label class="myProfileTxt">Adres:</label>
+                <div class="col-sm-3 myProfileTxt" th:text="${profile.getAddress()}"></div>
+            </div>
+        </fieldset>
+        <div>
+            <a class="btn btn-outline-secondary"
+               th:href="@{/profile/editPassword/{email}(email=${profile.getEmail()})}">Edytuj hasło</a>
+        </div>
+        <div>
+            <a class="btn btn-outline-secondary" th:href="@{'/edit/' + ${profile.getId()}}">
+                <!--<form th:action="@{'/edit/' + ${profile.getId()}}" method="get">-->
+                <!--<input type="hidden" name="id" th:value="${profile.id}"/>-->
+                <button type="submit" class="btn btn-outline-success">Edytuj profil</button>
+                <!--</form>-->
+            </a>
+        </div>
+        <div>
+        <form th:action="@{/profile}" method="post">
+            <input type="hidden" name="email" th:value="${profile.email}"/>
+            <button type="submit" class="btn btn-outline-danger">Usuń konto</button>
+        </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
