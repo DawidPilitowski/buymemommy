@@ -77,21 +77,15 @@ public class CategoryService {
         return categoryFromDatabase;
     }
 
-    public MainCategory saveMainCategory(MainCategory categoryM) {
-        return null;
-    }
 
-    public Subcategory saveSubCategory(Subcategory categoryS) {
-        return null;
-    }
-
-    public void removeCategory(Long id) {
-        categoryRepository.deleteById(id);
-    }
-
-    public Optional<Category> find(Long id) {
-        return categoryRepository.findById(id);
-    }
+//
+//    public void removeCategory(Long id) {
+//        categoryRepository.deleteById(id);
+//    }
+//
+//    public Optional<Category> find(Long id) {
+//        return categoryRepository.findById(id);
+//    }
 
 
 }

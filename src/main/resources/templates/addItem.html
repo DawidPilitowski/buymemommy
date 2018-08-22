@@ -63,13 +63,14 @@
                     <label class="cell-justified"  for="price">Wiek od:</label>
                 </div>
                 <div class="col-md-1">
-                    <input class="form-control" id="ageFrom" th:field="*{ageFrom}">
+                    <input type="number" name="ageFrom" th:field="*{ageFrom}" min="1" max="15">
+
                 </div>
                 <div class="col-md-1 ">
                     <label class="cell-justified" for="price">Wiek do:</label>
                 </div>
                 <div class="col-md-1 ">
-                    <input class="form-control" id="ageTo" th:field="*{ageTo}">
+                    <input type="number" name="ageTo" th:field="*{ageTo}" min="1" max="15">
                 </div>
             </div>
             <div class="row">

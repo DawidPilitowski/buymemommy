@@ -72,7 +72,7 @@ public class CategoryComponent {
                 "kolejki i akcesoria",
                 "autka i akcesoria"
         );
-//        createCategory("Zabawki do kąpieli", null);
+        createCategory("Zabawki do kąpieli", "zabawki do kąpieli");
         createCategory("Pluszaki",
                 "tradycyjne",
                 "edukacyjne",
