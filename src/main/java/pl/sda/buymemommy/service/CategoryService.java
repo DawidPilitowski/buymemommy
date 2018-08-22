@@ -78,14 +78,4 @@ public class CategoryService {
     }
 
 
-//
-//    public void removeCategory(Long id) {
-//        categoryRepository.deleteById(id);
-//    }
-//
-//    public Optional<Category> find(Long id) {
-//        return categoryRepository.findById(id);
-//    }
-
-
 }

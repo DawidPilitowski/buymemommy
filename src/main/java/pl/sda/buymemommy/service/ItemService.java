@@ -50,6 +50,21 @@ public class ItemService {
         itemList.addAll(items);
         return itemList;
     }
+
+//    public List<Item> searchByNameLike(String phrase) {
+//        String nameToLowerCase = phrase.toLowerCase();
+//        String words[] = nameToLowerCase.split("\\s+");
+//        Set<Item> items = new HashSet<>();
+//        for (String word : words) {
+//            items.addAll(itemRepository.findByItemNameLike(word));
+//        }
+//        List<Item> itemList = new ArrayList<>();
+//        itemList.addAll(items);
+//        return itemList;
+//    }
+
+
+
 }
 
 

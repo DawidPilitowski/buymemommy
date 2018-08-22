@@ -40,17 +40,13 @@ public class ItemController {
         if (!phrase.isEmpty()) {
             itemList = itemService.searchByName(phrase);
             model.addAttribute("itemList", itemList);
+        }else {
+           itemList = itemService.getAllItems();
+            model.addAttribute("itemList", itemList);
         }
         return "itemList";
     }
 
-
-
-    /*@GetMapping(path = "/search/{phrase}")
-    public String searchItem(Model model, @PathVariable(name = "phrase") String phrase) {
-        model.addAttribute("itemList", items);
-        return "itemList";
-    }*/
 
     @GetMapping(path = "/addItem")
     public String add(Model model) {
