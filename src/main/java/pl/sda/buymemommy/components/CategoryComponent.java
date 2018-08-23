@@ -9,10 +9,7 @@ import pl.sda.buymemommy.repository.CategoryRepository;
 import pl.sda.buymemommy.service.CategoryService;
 import sun.applet.Main;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -21,6 +18,7 @@ public class CategoryComponent {
     private CategoryService categoryService;
 
     private HashMap<MainCategory, List<Subcategory>> categoryMap = new HashMap<>();
+    private HashMap<String, Map<String, Category>> categoryMapHashMap = new HashMap<>();
 
     @Autowired
     public CategoryComponent(CategoryService categoryService) {
@@ -62,7 +60,7 @@ public class CategoryComponent {
                 "3D/4D",
                 "drewniane",
                 "pozostałe"
-                );
+        );
         createCategory("Pojazdy",
                 "wózki",
                 "pchacze",
@@ -121,8 +119,26 @@ public class CategoryComponent {
 
         for (Subcategory subcategory : subcategories) {
             Category category = new Category(null, mainCategory, subcategory);
-            categoryService.checkAndSaveIfNotExists(category);
+            category = categoryService.checkAndSaveIfNotExists(category);
+
+            addToHashMap(mainCategory, subcategory, category);
         }
         categoryMap.put(mainCategory, subcategories);
+    }
+
+    private void addToHashMap(MainCategory mainCategory, Subcategory subcategory, Category category) {
+        Map<String, Category> catMap = categoryMapHashMap.get(mainCategory.getNameCategory());
+        if (catMap == null) {
+            catMap = new HashMap<>();
+        }
+        catMap.put(subcategory.getName(), category);
+        categoryMapHashMap.put(mainCategory.getNameCategory(), catMap);
+    }
+
+    public Category find(String main, String sub) {
+        return categoryMapHashMap.get(main).get(sub);
+    }
+    public List<Category> find(String main) {
+        return categoryMapHashMap.get(main).values().stream().collect(Collectors.toList());
     }
 }

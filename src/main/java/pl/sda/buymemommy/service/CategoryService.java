@@ -3,6 +3,7 @@ package pl.sda.buymemommy.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.buymemommy.model.Category;
+import pl.sda.buymemommy.model.Item;
 import pl.sda.buymemommy.model.MainCategory;
 import pl.sda.buymemommy.model.Subcategory;
 import pl.sda.buymemommy.repository.CategoryRepository;
