@@ -1,5 +1,6 @@
 package pl.sda.buymemommy.components;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.sda.buymemommy.model.Category;
@@ -7,16 +8,14 @@ import pl.sda.buymemommy.model.MainCategory;
 import pl.sda.buymemommy.model.Subcategory;
 import pl.sda.buymemommy.service.CategoryService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
 public class CategoryComponent {
 
     private CategoryService categoryService;
+    @Getter
     private HashMap<MainCategory, List<Subcategory>> categoryMap = new HashMap<>();
     private HashMap<String, Map<String, Category>> categoryMapHashMap = new HashMap<>();
 
