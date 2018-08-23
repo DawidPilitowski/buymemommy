@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -8,6 +8,7 @@
     <title>Profil</title>
 </head>
 <body>
+<div th:replace="fragments :: header"></div>
 
 <div class="container myContainer" th:object="${profile}">
     <div class="jumbotron">
@@ -15,7 +16,9 @@
         <hr class="my-4"/>
         <fieldset>
             <div class="form-group row">
+                <div>
                 <label class="myProfileTxt">Nazwa użytkownika:</label>
+                </div>
                 <div class="col-sm-3 myProfileTxt" th:text="${profile.getUsername()}"></div>
             </div>
             <div class="form-group row">

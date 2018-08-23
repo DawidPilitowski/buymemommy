@@ -6,21 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.buymemommy.model.LoginUserDTO;
 import pl.sda.buymemommy.model.RegisterUserDTO;
 import pl.sda.buymemommy.model.UserModel;
 import pl.sda.buymemommy.repository.IUserRepository;
 import pl.sda.buymemommy.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.security.Principal;
 import java.util.Optional;
 
 @Controller
 public class UserController {
 
-    //    controller: mappingi dodawania (get, post)
     @Autowired
     private IUserRepository iUserRepository;
 
@@ -31,11 +26,6 @@ public class UserController {
     public String loginGet() {
         return "/login";
     }
-
-//    @GetMapping(path = "/home")
-//    public String loginSet() {
-//        return "/edit{id}";
-//    }
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -62,15 +52,16 @@ public class UserController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(Model model, @PathVariable("id") Long id, UserModel user) {
+    public String edit(Model model, @PathVariable("id") Long id) {
         UserModel u;
         UserModel loggedInUser = userService.getLoggedInUser();
         if (id == 0) {
             id = loggedInUser.getId();
         }
-        if (loggedInUser.getId() != id && !loggedInUser.isAdmin()) {
+        if (!loggedInUser.getId().equals(id)) {
             return "premission-denied";
-        } else if (loggedInUser.isAdmin() || loggedInUser.getId() == id) {
+        }
+        if (loggedInUser.isAdmin() || loggedInUser.getId().equals(id)) {
             Optional<UserModel> found = iUserRepository.findById(id);
             if (found.isPresent()) {
                 u = found.get();
@@ -80,18 +71,13 @@ public class UserController {
         } else {
             u = loggedInUser;
         }
-        user.setId(u.getId());
-        user.setUsername(u.getUsername());
-        user.setAddress(u.getAddress());
-        user.setSurname(u.getSurname());
-        user.setEmail(u.getEmail());
-        model.addAttribute("user", user);
+        model.addAttribute("user", u);
 
         return "edit";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editPost(@Valid UserModel user, BindingResult result) {
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String editPost(UserModel user, @PathVariable(name = "id") Long id, BindingResult result) {
         if (result.hasFieldErrors("email")) {
             return "/edit";
         }
@@ -100,10 +86,7 @@ public class UserController {
         } else {
             userService.updateUser(userService.getLoggedInUser().getUsername(), user);
         }
-        if (userService.getLoggedInUser().getId().equals(user.getId())) {
-            userService.getLoggedInUser(true);
-        }
-        return "redirect:/edit/" + user.getId() + "?updated";
+        return "redirect:/profile";
     }
 
 

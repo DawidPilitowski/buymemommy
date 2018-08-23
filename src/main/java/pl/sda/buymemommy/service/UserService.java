@@ -17,8 +17,6 @@ public class UserService {
     BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private IUserRepository appUserRepository;
-    @Autowired
-    private HttpSession httpSession;
     public final String CURRENT_USER_KEY = "CURRENT_USER";
 
 
@@ -40,27 +38,20 @@ public class UserService {
 
 
     public UserModel getLoggedInUser() {
-        return getLoggedInUser(false);
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        return appUserRepository.findOneByUsername(name);
     }
 
-    public UserModel getLoggedInUser(Boolean forceFresh) {
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserModel user = (UserModel) httpSession.getAttribute(CURRENT_USER_KEY);
-        if (forceFresh || httpSession.getAttribute(CURRENT_USER_KEY) == null) {
-            user = this.appUserRepository.findOneByUsername(userName);
-            httpSession.setAttribute(CURRENT_USER_KEY, user);
-        }
-        return user;
-    }
 
     public void updateUser(UserModel user) {
         updateUser(user.getUsername(), user);
     }
 
     public void updateUser(String userName, UserModel newData) {
-        this.appUserRepository.updateUser(
-                userName, newData.getEmail(),
-                newData.getAddress(), newData.getSurname());
+//        this.appUserRepository.updateUser(
+//                userName, newData.getEmail(),
+//                newData.getAddress(), newData.getSurname());
+        appUserRepository.save(newData);
     }
 
     public void deleteUser(Long id) {

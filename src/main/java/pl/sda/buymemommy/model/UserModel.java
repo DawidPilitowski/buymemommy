@@ -36,6 +36,8 @@ public class UserModel {
     public Boolean isAdmin() {
         return this.role.equals("ROLE_ADMIN");
     }
+
+
     //todo WISHLIST
 //    @OneToMany
 //    private Map<Item,id> wishList;

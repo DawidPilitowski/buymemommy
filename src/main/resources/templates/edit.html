@@ -6,7 +6,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <form class="form-signin" th:action="@{/edit/{id}}" th:object="${user}" method="post">
+    <form class="form-signin" th:action="@{'/edit/'+${user.id}}" th:object="${user}" method="post">
         <h2 class="form-signin-heading">Edytuj konto: <span th:text="${user.username}"></span></h2>
 
         <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger">Niepoprawny Email</div>
