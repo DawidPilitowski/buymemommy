@@ -58,13 +58,8 @@ public class ItemController {
 
     @GetMapping(path = "/itemList/{phrase}")
     public String itemList(Model model, @PathVariable(name = "phrase") String phrase) {
-        List<Item> itemList;
-        if (!phrase.isEmpty()) {
-            itemList = itemService.searchByName(phrase);
-            model.addAttribute("itemList", itemList);
-        } else {
-            return "redirect:/item/itemList";
-        }
+        List<Item> itemList= itemService.searchByName(phrase);;
+        model.addAttribute("itemList", itemList);
         return "itemList";
     }
 
