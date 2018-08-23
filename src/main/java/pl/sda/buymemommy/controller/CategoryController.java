@@ -22,32 +22,32 @@ public class CategoryController {
     public String list(Model model){
         List<Category> categoryList = categoryService.getAllList();
         model.addAttribute("categoryList", categoryList);
-        return "categoryList";
+        return "oldCategoryList";
     }
-    @GetMapping(path="/addCategory")
-    public String addCategory(Model model) {
-        Category category = new Category();
-        model.addAttribute("category", category);
-        return "addCategory";
-    }
-    @PostMapping(path="/addCategory")
-    public String showCategory(Model model, Category category) {
-        categoryService.saveCategory(category);
-        return "redirect:/categoryList";
-    }
-    @GetMapping(path = "/remove/{id}")
-    public String remove(@PathVariable(name="id") Long id){
-        categoryService.removeCategory(id);
-        return "redirect:/categoryList";
-    }
-    @GetMapping(path = "/details/{id}")
-    public String details(Model model, @PathVariable(name="id")Long id){
-        Optional<Category> categoryOptional= categoryService.find(id);
-        if (categoryOptional.isPresent()){
-            model.addAttribute("category", categoryOptional.get());
-            return "categoryDetails";
-        }
-        return "error";
-    }
+//    @GetMapping(path="/addCategory")
+//    public String addCategory(Model model) {
+//        Category category = new Category();
+//        model.addAttribute("category", category);
+//        return "oldAddCategory";
+//    }
+//    @PostMapping(path="/addCategory")
+//    public String showCategory(Model model, Category category) {
+//        categoryService.saveCategory(category);
+//        return "redirect:/categoryList";
+//    }
+//    @GetMapping(path = "/remove/{id}")
+//    public String remove(@PathVariable(name="id") Long id){
+//        categoryService.removeCategory(id);
+//        return "redirect:/categoryList";
+//    }
+//    @GetMapping(path = "/details/{id}")
+//    public String details(Model model, @PathVariable(name="id")Long id){
+//        Optional<Category> categoryOptional= categoryService.find(id);
+//        if (categoryOptional.isPresent()){
+//            model.addAttribute("category", categoryOptional.get());
+//            return "categoryDetails";
+//        }
+//        return "error";
+//    }
 
 }

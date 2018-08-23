@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: links">
+<head th:replace="oldFragments :: links">
 </head>
 <body>
-<div th:replace="fragments :: header"></div>
+<div th:replace="oldFragments :: header"></div>
 
 <div class="container marketing">
     <div class="row">
@@ -12,7 +12,7 @@
         </form>
     </div>
 </div>
-<div th:replace="fragments :: footer"></div>
+<div th:replace="oldFragments :: footer"></div>
 
 </body>
 </html>

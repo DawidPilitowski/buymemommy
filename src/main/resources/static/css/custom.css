@@ -1,0 +1,9 @@
+/*!* your styles go here *!*/
+.categories, .subcategories {
+    -webkit-transition: all 0.0s;
+    transition: all 0.0s;
+}
+
+.brand-text {
+    /*color: pink;*/
+}

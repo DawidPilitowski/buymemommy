@@ -2,27 +2,26 @@ package pl.sda.buymemommy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import pl.sda.buymemommy.model.RegisterUserDTO;
-import pl.sda.buymemommy.model.UserModel;
-import pl.sda.buymemommy.repository.IUserRepository;
+import pl.sda.buymemommy.model.dto.AppUserRegisterDTO;
+import pl.sda.buymemommy.model.AppUser;
+import pl.sda.buymemommy.repository.AppUserRepository;
 
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class AppUserService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
-    private IUserRepository appUserRepository;
+    private AppUserRepository appUserRepository;
 
-    public boolean registerUser(RegisterUserDTO dto) {
-        Optional<UserModel> appUser = appUserRepository.findByUsername(dto.getUsername());
+    public boolean registerUser(AppUserRegisterDTO dto) {
+        Optional<AppUser> appUser = appUserRepository.findByUsername(dto.getUsername());
         if (appUser.isPresent()){
             return false;
         }
-        UserModel newUser = new UserModel(dto.getUsername(),
+        AppUser newUser = new AppUser(dto.getUsername(),
                 bCryptPasswordEncoder.encode(dto.getPassword()));
 
         appUserRepository.save(newUser);

@@ -12,9 +12,9 @@ import java.util.Map;
 
 @Entity
 @Data
-public class UserModel {
+public class AppUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
@@ -26,7 +26,7 @@ public class UserModel {
 
     private LocalDate registerDate;
 
-    public UserModel(String username, String password) {
+    public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
     }
