@@ -27,7 +27,7 @@
                     <input class="form-control" id="descritpion" th:field="*{description}">
                 </div>
             </div>
-                <div class="row">
+            <div class="row">
                 <div class="col-md-3">
                     <label for="price">Cena:</label>
                 </div>
@@ -42,7 +42,8 @@
                 <div class="col-md-5">
                     <input type="radio" name="gender" id="girl" th:value="GIRL" th:field="*{gender}">Dla dziewczynki<br>
                     <input type="radio" name="gender" id="boy" th:value="BOY" th:field="*{gender}">Dla chłopca<br>
-                    <input type="radio" name="gender" id="both" th:value="BOTH" th:field="*{gender}">Dla wszystkich<br>
+                    <input type="radio" name="gender" id="both" th:value="BOTH" th:checked="BOTH" th:field="*{gender}">Dla
+                    wszystkich<br>
                 </div>
             </div>
             <div class="row">
@@ -52,32 +53,31 @@
                 <div class="col-md-5">
                     <select class="form-control" id="categoryList" th:field="*{categoryList}">
                         <option th:each="category : ${categories}"
-                                th:text="${category.categoryName}"
+                                th:text="${category.getMainCategory().getNameCategory()}+ ' ' +${category.getSubcategory().getName()}"
                                 th:value="${category.id}"></option>
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <label for="price">Wiek od:</label>
+                    <label class="cell-justified"  for="price">Wiek od:</label>
                 </div>
-                <div class="col-md-9">
-                    <input class="form-control" id="ageFrom" th:field="*{ageFrom}">
+                <div class="col-md-1">
+                    <input type="number" name="ageFrom" th:field="*{ageFrom}" min="1" max="15">
+
+                </div>
+                <div class="col-md-1 ">
+                    <label class="cell-justified" for="price">Wiek do:</label>
+                </div>
+                <div class="col-md-1 ">
+                    <input type="number" name="ageTo" th:field="*{ageTo}" min="1" max="15">
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <label for="price">Wiek do:</label>
-                </div>
-                <div class="col-md-9">
-                    <input class="form-control" id="ageTo" th:field="*{ageTo}">
+                <div class="col-md-offset-3 col-md-9">
+                    <input class="form-control" type="submit" th:value="Submit">
                 </div>
             </div>
-                <div class="row">
-                    <div class="col-md-offset-3 col-md-9">
-                        <input class="form-control" type="submit" th:value="Submit">
-                    </div>
-                </div>
         </form>
     </div>
 </div>

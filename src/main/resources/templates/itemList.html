@@ -12,25 +12,27 @@
 <div class="container marketing">
 
     <h3>Lista Produktów</h3>
-    <div class="row col-md-offset-1 col-md-8">
-        <div class="row table-header">
+    <div class="row">
+        <div class="row table-header col-md-12">
             <div class="col-md-1">Id</div>
-            <div class="col-md-2">itemName</div>
-            <div class="col-md-3">description</div>
-            <div class="col-md-2">price</div>
-            <div class="col-md-2">gender</div>
-            <div class="col-md-2">ageFrom</div>
-            <div class="col-md-2">ageTo</div>
-            <div class="col-md-2">action</div>
+            <div class="col-md-1">Nazwa produktu</div>
+            <div class="col-md-2">Opis produktu</div>
+            <div class="col-md-1">Cena (zł)</div>
+            <div class="col-md-1">B/G</div>
+            <div class="col-md-1">Kategoria produktu</div>
+            <div class="col-md-1">Wiek od</div>
+            <div class="col-md-1">Wiek do</div>
+            <div class="col-md-1">Opcje</div>
         </div>
-        <div class="row table-row" th:each="item : ${itemList}">
+        <div class="row table-row col-md-12" th:each="item : ${itemList}">
             <div class="col-md-1"><p th:text="${item.getId()}"></p></div>
-            <div class="col-md-2"><p th:text="${item.getItemName()}"></p></div>
+            <div class="col-md-1"><p th:text="${item.getItemName()}"></p></div>
             <div class="col-md-2"><p th:text="${item.getDescription()}"></p></div>
-            <div class="col-md-3"><p th:text="${item.getPrice()}"></p></div>
-            <div class="col-md-2"><p th:text="${item.getGender()}"></p></div>
-            <div class="col-md-2"><p th:text="${item.getAgeFrom()}"></p></div>
-            <div class="col-md-2"><p th:text="${item.getAgeTo()}"></p></div>
+            <div class="col-md-1"><p th:text="${item.getPrice()}"></p></div>
+            <div class="col-md-1"><p th:text="${item.getGender()}"></p></div>
+            <div class="col-md-1"><p th:text="${item.getCategoryList().get(0).mainCategory.getNameCategory()} + ' ' + ${item.getCategoryList().get(0).subcategory.getName()}"></p></div>
+            <div class="col-md-1"><p th:text="${item.getAgeFrom()}"></p></div>
+            <div class="col-md-1"><p th:text="${item.getAgeTo()}"></p></div>
             <div class="col-md-2 row">
                 <div class="col-md-6"><!--usuwanie-->
                     <a th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a>
