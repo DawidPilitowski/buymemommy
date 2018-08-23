@@ -5,18 +5,18 @@ import org.springframework.stereotype.Component;
 import pl.sda.buymemommy.model.Category;
 import pl.sda.buymemommy.model.MainCategory;
 import pl.sda.buymemommy.model.Subcategory;
-import pl.sda.buymemommy.repository.CategoryRepository;
 import pl.sda.buymemommy.service.CategoryService;
-import sun.applet.Main;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
 public class CategoryComponent {
 
     private CategoryService categoryService;
-
     private HashMap<MainCategory, List<Subcategory>> categoryMap = new HashMap<>();
     private HashMap<String, Map<String, Category>> categoryMapHashMap = new HashMap<>();
 
@@ -138,6 +138,7 @@ public class CategoryComponent {
     public Category find(String main, String sub) {
         return categoryMapHashMap.get(main).get(sub);
     }
+
     public List<Category> find(String main) {
         return categoryMapHashMap.get(main).values().stream().collect(Collectors.toList());
     }

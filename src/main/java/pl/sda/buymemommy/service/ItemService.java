@@ -46,9 +46,7 @@ public class ItemService {
         for (String word : words) {
             items.addAll(itemRepository.findAllByItemNameContains(word));
         }
-        List<Item> itemList = new ArrayList<>();
-        itemList.addAll(items);
-        return itemList;
+        return new ArrayList<>(items);
     }
 
 

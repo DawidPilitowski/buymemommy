@@ -14,13 +14,14 @@ import java.util.Set;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    public Set<Item> findAllByItemName(String name);
+    Set<Item> findAllByItemName(String name);
 
+    List<Item> findAllByItemNameContains(String word);
+
+    List<Item> findAllByCategoryList(List<Category> categories);
+
+}
 //    @Query("SELECT Item from item where item_name like :nameL%")
 //    public List<Item> findByItemNameLike(@Param("nameL")String nameLike);
 
 //    List<Item> findAllByItemNameLike(String nameLike);
-    List<Item> findAllByItemNameContains(String word);
-
-    List<Item> findAllByCategoryList(List<Category> categories);
-}

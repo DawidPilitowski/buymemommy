@@ -159,11 +159,11 @@
             <!-- Sidebar Navigation Menus-->
             <span class="heading">Kategorie</span>
             <ul class="list-unstyled">
-                <li th:each="category : ${categoryList}"><a th:href="'#'+${category.getCategoryName()}" aria-expanded="false" data-toggle="collapse"><!--<i th:class="${category.getCategoryIcon}"></i>--><span class="categories" th:text="${category.getCategoryName()}"></span></a> <!-- TODO : OBSLUGE IKON DODAC-->
+<!--                <li th:each="category : ${categoryList}"><a th:href="'#'+${category.getCategoryName()}" aria-expanded="false" data-toggle="collapse">&lt;!&ndash;<i th:class="${category.getCategoryIcon}"></i>&ndash;&gt;<span class="categories" th:text="${category.getCategoryName()}"></span></a> &lt;!&ndash; TODO : OBSLUGE IKON DODAC&ndash;&gt;
                     <ul th:id="${category.getCategoryName()}" class="collapse list-unstyled">
-                        <li th:each="subcategory : ${categoryList.getSubcategories()}"><a th:href="@{'/itemList/'+${subcategory}}" th:text="${subcategory}"></a></li> <!-- TODO : NIESTETY NIE MA W KATEGORII PRZECHOWYWANYCH SUBKATEGORII -->
+                        <li th:each="subcategory : ${categoryList.getSubcategories()}"><a th:href="@{'/itemList/'+${subcategory}}" th:text="${subcategory}"></a></li> &lt;!&ndash; TODO : NIESTETY NIE MA W KATEGORII PRZECHOWYWANYCH SUBKATEGORII &ndash;&gt;
                     </ul>
-                </li>
+                </li>-->
 <!--
                 <li th:each="category : ${categoryList}"><a th:href="'#'+${category}" aria-expanded="false" data-toggle="collapse"><i class="icon-home"></i><span class="categories" th:text="${category}"></span></a>
                     <ul th:id="${category}" class="collapse list-unstyled">

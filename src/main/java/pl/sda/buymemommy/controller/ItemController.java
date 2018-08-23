@@ -58,7 +58,7 @@ public class ItemController {
 
     @GetMapping(path = "/itemList/{phrase}")
     public String itemList(Model model, @PathVariable(name = "phrase") String phrase) {
-        List<Item> itemList= itemService.searchByName(phrase);;
+        List<Item> itemList= itemService.searchByName(phrase);
         model.addAttribute("itemList", itemList);
         return "oldItemList";
     }
