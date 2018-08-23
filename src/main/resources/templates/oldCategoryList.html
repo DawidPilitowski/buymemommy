@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CategoryList</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+</head>
+<body>
+<div class="container marketing">
+
+    <h3>Lista kategorii</h3>
+    <div class="row col-md-offset-1 col-md-11">
+        <div class="row table-header col-md-12">
+            <div class="col-md-1">Id</div>
+            <div class="col-md-3">Nazwa kategorii</div>
+            <div class="col-md-4">Podkategoria</div>
+            <div class="col-md-3">Opcje</div>
+
+
+        </div>
+        <div class="row table-row col-md-12" th:each="category : ${categoryList}">
+            <div class="col-md-1"><p th:text="${category.getId()}"></p></div>
+            <div class="col-md-3"><p th:text="${category.getMainCategory().getNameCategory()}"></p></div>
+            <div class="col-md-3"><p th:text="${category.getSubcategory().getName()}"></p></div>
+            <div class="col-md-4 row">
+                <div class="col-md-6"><!--usuwanie-->
+                    <a th:href="@{'/remove/' + ${category.getId()}}">Usuń</a>
+                </div>
+                <div class="col-md-6"><!--szczegoly-->
+                    <a th:href="@{'/details/' + ${category.getId()}}">Edytuj</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

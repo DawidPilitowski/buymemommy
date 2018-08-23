@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+</head>
+<body>
+
+
+<div class="container marketing">
+    <h3>Edytuj produkt</h3>
+    <div class="row">
+        <div class="row">
+            <form th:action="@{/item/details}" th:object="${itemDto}" method="post">
+                <input th:value="*{id}" th:field="*{id}" hidden>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="itemName">Nazwa produktu:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" id="itemName" th:value="*{itemName}" th:field="*{itemName}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="description">Opis produktu:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" id="description" th:value="*{description}" th:field="*{description}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="price">Cena:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" id="price" th:value="*{price}" th:field="*{price}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input class="form-control" type="submit" th:value="Save">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

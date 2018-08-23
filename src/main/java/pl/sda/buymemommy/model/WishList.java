@@ -23,5 +23,5 @@ public class WishList {
     private List<Item> items;
 
     @OneToOne
-    private UserModel userModel;
+    private AppUser appUser;
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -13,13 +14,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String categoryName;
-//    @OneToOne
-//    private MainCategory mainCategory;
-//    @OneToOne
-//    private Subcategory subcategory;
+//    private String categoryName;
+
+    @OneToOne
+    private MainCategory mainCategory;
+    @OneToOne
+    private Subcategory subcategory;
 
 
 
