@@ -84,8 +84,8 @@ public class ItemController {
         return "redirect:/item/itemList";
     }
 
-    @GetMapping(path = "/details/{id}")
-    public String detailsOfItem(Model model, @PathVariable(name = "id") Long id) {
+    @GetMapping(path = "/edit/{id}")
+    public String editOfItem(Model model, @PathVariable(name = "id") Long id) {
         Optional<Item> itemOptional = itemService.find(id);
         if (itemOptional.isPresent()) {
             Item item = itemOptional.get();
@@ -95,19 +95,35 @@ public class ItemController {
                     item.getDescription(),
                     item.getPrice());
             model.addAttribute("itemDto", itemDto);
+
         }
-        return "oldItemDetails";
+        return "oldItemEdit";
     }
 
-    @PostMapping(path = "/details")
-    public String setItemsDetails(Item item) {
-        ItemDTO modifiedItem = new ItemDTO(
-                item.getId(),
-                item.getItemName(),
-                item.getDescription(),
-                item.getPrice());
+    @PostMapping(path = "/edit")
+    public String setItemsEdit(ItemDTO item) {
+        Optional<Item> editedItem = itemService.find(item.getId());
+        if(editedItem.isPresent()){
+            Item edited = editedItem.get();
+            edited.setItemName(item.getItemName());
+            edited.setDescription(item.getDescription());
+            edited.setPrice(item.getPrice());
 
-        itemService.save(item);
+            itemService.save(edited);
+        }
+
         return "redirect:/item/itemList";
+    }
+    @GetMapping(path = "/details/{id}")
+    public String itemDetails(Model model, @PathVariable(name = "id") Long id) {
+       Optional<Item> itemOptional= itemService.find(id);
+
+      if(itemOptional.isPresent()){
+          Item item = itemOptional.get();
+          model.addAttribute("item", item);
+      }else {
+          return "redirect:/item/itemList";
+      }
+        return "itemDetails";
     }
 }

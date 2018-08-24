@@ -24,8 +24,10 @@ public class Item {
     private int ageFrom;
     private int ageTo;
 
+    @Lob
+    @Column
+    private byte[] data;
+
     @ManyToMany
     List<Category> categoryList;
-
-
 }

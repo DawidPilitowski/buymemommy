@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/oldTheme.css}">
 </head>
 <body>
 
@@ -12,14 +12,15 @@
     <h3>Edytuj produkt</h3>
     <div class="row">
         <div class="row">
-            <form th:action="@{/item/details}" th:object="${itemDto}" method="post">
+            <form th:action="@{/item/edit}" th:object="${itemDto}" method="post">
                 <input th:value="*{id}" th:field="*{id}" hidden>
                 <div class="row">
                     <div class="col-md-3">
                         <label for="itemName">Nazwa produktu:</label>
                     </div>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" id="itemName" th:value="*{itemName}" th:field="*{itemName}">
+                        <input class="form-control" type="text" id="itemName" th:value="*{itemName}"
+                               th:field="*{itemName}">
                     </div>
                 </div>
                 <div class="row">
@@ -27,7 +28,8 @@
                         <label for="description">Opis produktu:</label>
                     </div>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" id="description" th:value="*{description}" th:field="*{description}">
+                        <input class="form-control" type="text" id="description" th:value="*{description}"
+                               th:field="*{description}">
                     </div>
                 </div>
                 <div class="row">
