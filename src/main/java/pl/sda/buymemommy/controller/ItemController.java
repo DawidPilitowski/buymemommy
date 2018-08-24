@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/item/")
@@ -37,6 +38,13 @@ public class ItemController {
     public String itemList(Model model) {
         List<Item> itemList = itemService.getAllItems();
         model.addAttribute("itemList", itemList);
+        model.addAttribute("images", itemList.stream().map(item -> {
+            if(item.getImage().length == 0){
+                return "";
+            }else{
+                return new String(Base64.getEncoder().encode(item.getImage()));
+            }
+        }).collect(Collectors.toList()));
 //        model.addAttribute("category", itemList);
         return "oldItemList";
     }

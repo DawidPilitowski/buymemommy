@@ -15,7 +15,7 @@
                 <label for="image">Imejdż:</label>
             </div>
             <div class="col-md-9">
-                <img id="image" th:src="${'data:image/png;base64,'+imageBase64}" alt="" width="" />
+                <img th:width="200" th:height="100" id="image" th:src="${'data:image/png;base64,'+imageBase64}" alt="" width="" />
                 <!--<img id="image" th:src="*{'data:image/pnh;base64,'+image}" />-->
             </div>
         </div>
