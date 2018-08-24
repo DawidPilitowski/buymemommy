@@ -12,6 +12,15 @@
     <div class="row" th:object="${item}">
         <div class="row">
             <div class="col-md-3">
+                <label for="image">Imejdż:</label>
+            </div>
+            <div class="col-md-9">
+                <img id="image" th:src="${'data:image/png;base64,'+imageBase64}" alt="" width="" />
+                <!--<img id="image" th:src="*{'data:image/pnh;base64,'+image}" />-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
                 <label for="itemName">Nazwa produktu:</label>
             </div>
             <div class="col-md-9">

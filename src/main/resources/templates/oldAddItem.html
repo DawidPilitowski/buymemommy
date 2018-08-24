@@ -10,7 +10,7 @@
 
 <div class="container marketing">
     <div class="row">
-        <form th:action="@{/item/addItem}" th:object="${item}" method="post">
+        <form th:action="@{/item/addItem}" th:object="${item}" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-3">
                     <label for="itemName">Nazwa produktu:</label>
@@ -33,6 +33,14 @@
                 </div>
                 <div class="col-md-9">
                     <input class="form-control" id="price" th:field="*{price}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="photo">Zdjęcie:</label>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control" id="photo" type="file" name="photo">
                 </div>
             </div>
             <div class="row">

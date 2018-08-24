@@ -26,7 +26,7 @@ public class Item {
 
     @Lob
     @Column
-    private byte[] data;
+    private byte[] image;
 
     @ManyToMany
     List<Category> categoryList;

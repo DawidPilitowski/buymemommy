@@ -3,10 +3,8 @@ package pl.sda.buymemommy.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.sda.buymemommy.components.CategoryComponent;
 import pl.sda.buymemommy.model.Category;
 import pl.sda.buymemommy.model.Item;
@@ -14,6 +12,10 @@ import pl.sda.buymemommy.model.dto.ItemDTO;
 import pl.sda.buymemommy.service.CategoryService;
 import pl.sda.buymemommy.service.ItemService;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,7 +60,7 @@ public class ItemController {
 
     @GetMapping(path = "/itemList/{phrase}")
     public String itemList(Model model, @PathVariable(name = "phrase") String phrase) {
-        List<Item> itemList= itemService.searchByName(phrase);
+        List<Item> itemList = itemService.searchByName(phrase);
         model.addAttribute("itemList", itemList);
         return "oldItemList";
     }
@@ -73,7 +75,17 @@ public class ItemController {
     }
 
     @PostMapping(path = "/addItem")
-    public String add(Item item) {
+    public String add(Item item, @RequestParam("photo") MultipartFile file) {
+        String name = file.getName();
+        try {
+            byte[] bytes = file.getBytes();
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
+            stream.write(bytes);
+            stream.close();
+            item.setImage(bytes);
+        } catch (Exception e) {
+            System.out.println("File has not been added.");
+        }
         itemService.save(item);
         return "redirect:/item/itemList";
     }
@@ -103,7 +115,7 @@ public class ItemController {
     @PostMapping(path = "/edit")
     public String setItemsEdit(ItemDTO item) {
         Optional<Item> editedItem = itemService.find(item.getId());
-        if(editedItem.isPresent()){
+        if (editedItem.isPresent()) {
             Item edited = editedItem.get();
             edited.setItemName(item.getItemName());
             edited.setDescription(item.getDescription());
@@ -114,16 +126,18 @@ public class ItemController {
 
         return "redirect:/item/itemList";
     }
+
     @GetMapping(path = "/details/{id}")
     public String itemDetails(Model model, @PathVariable(name = "id") Long id) {
-       Optional<Item> itemOptional= itemService.find(id);
+        Optional<Item> itemOptional = itemService.find(id);
 
-      if(itemOptional.isPresent()){
-          Item item = itemOptional.get();
-          model.addAttribute("item", item);
-      }else {
-          return "redirect:/item/itemList";
-      }
+        if (itemOptional.isPresent()) {
+            Item item = itemOptional.get();
+            model.addAttribute("item", item);
+            model.addAttribute("imageBase64", new String(Base64.getEncoder().encode(item.getImage())));
+        } else {
+            return "redirect:/item/itemList";
+        }
         return "itemDetails";
     }
 }
