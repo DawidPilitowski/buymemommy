@@ -10,12 +10,12 @@
 <body>
 <div class="container marketing">
     <div class="row" th:object="${item}">
-        <div class="row">
+        <div class="row" th:align="center">
             <div class="col-md-3">
-                <label for="image">Imejdż:</label>
+                <label for="image"></label>
             </div>
             <div class="col-md-9">
-                <img th:width="200" th:height="100" id="image" th:src="${'data:image/png;base64,'+imageBase64}" alt="" width="" />
+                <img th:width="500" th:height="400" id="image" th:src="${'data:image/png;base64,'+imageBase64}" alt=""/>
                 <!--<img id="image" th:src="*{'data:image/pnh;base64,'+image}" />-->
             </div>
         </div>
@@ -24,7 +24,16 @@
                 <label for="itemName">Nazwa produktu:</label>
             </div>
             <div class="col-md-9">
-                <p id="itemName" th:text="*{itemName}">
+                <p id="itemName" th:text="*{getItemName()}">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle" id=" dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Kupuję!</button>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby=" dropdownMenu1">
+                        <li><a href="#">Dodaj do koszyka</a></li>
+                        <li><a href="#">Dodaj do listy życzeń</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -40,7 +49,15 @@
                 <label for="price">Cena:</label>
             </div>
             <div class="col-md-9">
-                <p id="price" th:text="*{price}">
+                <p id="price" th:text="*{getPrice()+'zł'}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 ">
+                <label for="itemLimit">Ilość dosteponych produktów:</label>
+            </div>
+            <div class="col-md-1 ">
+                <p type="number" name="itemLimit" th:text="*{getItemLimit()}">
             </div>
         </div>
         <div class="row">
@@ -68,6 +85,7 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
 

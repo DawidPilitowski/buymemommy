@@ -15,19 +15,20 @@
     <h3>Lista Produktów</h3>
     <div class="row">
         <div class="row table-header col-md-12">
-            <div class="col-md-4">Nazwa produktu</div>
+            <div class="col-md-5 text-center">Nazwa produktu</div>
             <div class="col-md-3">Kategoria produktu</div>
-            <div class="col-md-2">Cena (zł)</div>
+            <div class="col-md-1">Cena (zł)</div>
             <div class="col-md-3">Opcje</div>
+
         </div><!--iter.index-->
         <div class="row table-row col-md-12" th:each="item,iter  : ${itemList}">
             <div class="col-md-2"><img th:width="200" th:height="100" id="image"
                                        th:src="${'data:image/png;base64,'+images[iter.index]}" alt=""/></div>
-            <div class="col-md-4"><p th:text="${item.getItemName()}"></p></div>
+            <div class="col-md-3"><p th:align="center" th:text="${item.getItemName()}"></p></div>
             <div class="col-md-3"><p
                     th:text="${item.getCategoryList().get(0).mainCategory.getNameCategory()} + ' ' + ${item.getCategoryList().get(0).subcategory.getName()}"></p>
             </div>
-            <div class="col-md-2"><p th:text="${item.getPrice()}"></p></div>
+            <div class="col-md-1"><p th:text="${item.getPrice()}"></p></div>
             <div class="col-md-3 row">
                 <div class="col-md-3"><!--usuwanie-->
                     <a th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a>
@@ -36,7 +37,7 @@
                     <a th:href="@{'/item/edit/' + ${item.getId()}}">Edytuj</a>
                 </div>
                 <div class="col-md-3"><!--szczegoly-->
-                    <a th:href="@{'/item/details/' + ${item.getId()}}">Więcej/a>
+                    <a th:href="@{'/item/details/' + ${item.getId()}}">Więcej</a>
                 </div>
             </div>
         </div>

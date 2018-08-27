@@ -19,6 +19,7 @@ public class Item {
     private Long id;
     private String itemName;
     private String description;
+    private int itemLimit;
     private String price;
     private Gender gender;
     private int ageFrom;
