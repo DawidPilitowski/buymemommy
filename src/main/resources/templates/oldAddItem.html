@@ -62,18 +62,7 @@
                     wszystkich<br>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <label for="categoryList">Kategoria produktu:</label>
-                </div>
-                <div class="col-md-5">
-                    <select class="form-control" id="categoryList" th:field="*{categoryList}">
-                        <option th:each="category : ${categories}"
-                                th:text="${category.getMainCategory().getNameCategory()}+ ' ' +${category.getSubcategory().getName()}"
-                                th:value="${category.id}"></option>
-                    </select>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col-md-3">
                     <label class="cell-justified"  for="price">Wiek od:</label>

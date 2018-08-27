@@ -62,6 +62,19 @@ public class ItemService {
 
         return joinedItems;
     }
+
+    public List<Item> searchByAge(int age) {
+        return itemRepository.findAllByAgeFromGreaterThan(age);
+    }
+
+    public List<Item> searchBy(List<Category> categories, String phrase, int ageFrom) {
+        List<Item> joinedItems = new ArrayList<>();
+        for (Category c : categories) {
+            joinedItems.addAll(itemRepository.findAllByAgeFromGreaterThanAndCategoryListAndItemNameContains(
+                    ageFrom, Arrays.asList(c), phrase));
+        }
+        return joinedItems;
+    }
 }
 
 

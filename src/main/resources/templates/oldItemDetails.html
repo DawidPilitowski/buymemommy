@@ -26,8 +26,8 @@
             <div class="col-md-9">
                 <p id="itemName" th:text="*{getItemName()}">
                 <div class="col-md-3">
-                    <a th:href="@{'/item//' + ${item.getId()}}" class="btn-group btn-outline-danger active" role="button" aria-pressed="true">Kupuję!</a>
-                    <a th:href="@{'/item//' + ${item.getId()}}" class="btn-group btn-outline-secondary active" role="button" aria-pressed="true">Dodaj do listy życzeń</a>
+                    <a th:href="@{'/item//' + ${item.getId()}}" class="btn-group btn-danger active" role="button" aria-pressed="true">Kupuję!</a>
+                    <a th:href="@{'/item//' + ${item.getId()}}" class="btn-group btn-secondary active" role="button" aria-pressed="true">Dodaj do listy życzeń</a>
                 </div>
             </div>
         </div>
@@ -81,6 +81,7 @@
         </div>
     </div>
 </div>
+<footer th:replace="fragments::footer"></footer>
 </body>
 </html>
 

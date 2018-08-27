@@ -9,6 +9,7 @@ import pl.sda.buymemommy.model.Subcategory;
 import pl.sda.buymemommy.service.CategoryService;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
@@ -132,6 +133,20 @@ public class CategoryComponent {
         }
         catMap.put(subcategory.getName(), category);
         categoryMapHashMap.put(mainCategory.getNameCategory(), catMap);
+    }
+
+    public List<Category> betterFind(String main, String sub) {
+        if (main.isEmpty()) {
+            List<Category> list = categoryMapHashMap.values()
+                    .stream()
+                    .flatMap(map -> map.values().stream())
+                    .collect(Collectors.toList());
+            return list;
+        }
+        if (sub.isEmpty()) {
+            return find(main);
+        }
+        return Arrays.asList(categoryMapHashMap.get(main).get(sub));
     }
 
     public Category find(String main, String sub) {
