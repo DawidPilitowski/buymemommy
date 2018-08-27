@@ -146,6 +146,6 @@ public class ItemController {
         } else {
             return "redirect:/item/itemList";
         }
-        return "itemDetails";
+        return "oldItemDetails";
     }
 }
