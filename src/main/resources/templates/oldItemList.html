@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Lista produktów</title>
@@ -38,8 +39,8 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a th:href="@{'/item/details/' + ${item.getId()}}">Zobacz szczegóły</a></li>
-                        <li><a th:href="@{'/item/edit/' + ${item.getId()}}">Edytuj</a></li>
-                        <li><a th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{'/item/edit/' + ${item.getId()}}">Edytuj</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a></li>
 
                     </ul>
                 </div>
