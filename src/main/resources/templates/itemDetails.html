@@ -25,14 +25,9 @@
             </div>
             <div class="col-md-9">
                 <p id="itemName" th:text="*{getItemName()}">
-                <div class="dropdown">
-                    <button type="button" class="btn btn-default dropdown-toggle" id=" dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Kupuję!</button>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby=" dropdownMenu1">
-                        <li><a href="#">Dodaj do koszyka</a></li>
-                        <li><a href="#">Dodaj do listy życzeń</a></li>
-                    </ul>
+                <div class="col-md-3">
+                    <a th:href="@{'/item//' + ${item.getId()}}" class="btn-group btn-outline-danger active" role="button" aria-pressed="true">Kupuję!</a>
+                    <a th:href="@{'/item//' + ${item.getId()}}" class="btn-group btn-outline-secondary active" role="button" aria-pressed="true">Dodaj do listy życzeń</a>
                 </div>
             </div>
         </div>
