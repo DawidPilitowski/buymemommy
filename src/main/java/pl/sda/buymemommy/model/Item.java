@@ -19,13 +19,16 @@ public class Item {
     private Long id;
     private String itemName;
     private String description;
+    private int itemLimit;
     private String price;
     private Gender gender;
     private int ageFrom;
     private int ageTo;
 
+    @Lob
+    @Column
+    private byte[] image;
+
     @ManyToMany
     List<Category> categoryList;
-
-
 }

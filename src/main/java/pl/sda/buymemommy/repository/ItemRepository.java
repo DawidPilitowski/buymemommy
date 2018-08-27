@@ -18,6 +18,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     List<Item> findAllByItemNameContains(String word);
 
+
+
     List<Item> findAllByCategoryList(List<Category> categories);
 
 }

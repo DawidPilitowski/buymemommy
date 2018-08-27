@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Lista produktów</title>
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/oldTheme.css}">
 </head>
 <body>
 
@@ -14,36 +15,51 @@
     <h3>Lista Produktów</h3>
     <div class="row">
         <div class="row table-header col-md-12">
-            <div class="col-md-1">Id</div>
-            <div class="col-md-1">Nazwa produktu</div>
-            <div class="col-md-2">Opis produktu</div>
+            <div class="col-md-5 text-center">Nazwa produktu</div>
+            <div class="col-md-3">Kategoria produktu</div>
             <div class="col-md-1">Cena (zł)</div>
-            <div class="col-md-1">B/G</div>
-            <div class="col-md-1">Kategoria produktu</div>
-            <div class="col-md-1">Wiek od</div>
-            <div class="col-md-1">Wiek do</div>
-            <div class="col-md-1">Opcje</div>
-        </div>
-        <div class="row table-row col-md-12" th:each="item : ${itemList}">
-            <div class="col-md-1"><p th:text="${item.getId()}"></p></div>
-            <div class="col-md-1"><p th:text="${item.getItemName()}"></p></div>
-            <div class="col-md-2"><p th:text="${item.getDescription()}"></p></div>
+            <div class="col-md-3">Opcje</div>
+
+        </div><!--iter.index-->
+        <div class="row table-row col-md-12" th:each="item,iter  : ${itemList}">
+            <div class="col-md-2"><img th:width="200" th:height="100" id="image"
+                                       th:src="${'data:image/png;base64,'+images[iter.index]}" alt=""/></div>
+            <div class="col-md-3"><p th:align="center" th:text="${item.getItemName()}"></p></div>
+            <div class="col-md-3"><p
+                    th:text="${item.getCategoryList().get(0).mainCategory.getNameCategory()} + ' ' + ${item.getCategoryList().get(0).subcategory.getName()}"></p>
+            </div>
             <div class="col-md-1"><p th:text="${item.getPrice()}"></p></div>
-            <div class="col-md-1"><p th:text="${item.getGender()}"></p></div>
-            <div class="col-md-1"><p th:text="${item.getCategoryList().get(0).mainCategory.getNameCategory()} + ' ' + ${item.getCategoryList().get(0).subcategory.getName()}"></p></div>
-            <div class="col-md-1"><p th:text="${item.getAgeFrom()}"></p></div>
-            <div class="col-md-1"><p th:text="${item.getAgeTo()}"></p></div>
-            <div class="col-md-2 row">
-                <div class="col-md-6"><!--usuwanie-->
-                    <a th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a>
+            <div class="col-md-3 row">
+                <!--<div class="col-md-3">&lt;!&ndash;usuwanie&ndash;&gt;-->
+                    <!--<a th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-3">&lt;!&ndash;edycja&ndash;&gt;-->
+                    <!--<a th:href="@{'/item/edit/' + ${item.getId()}}">Edytuj</a>-->
+                <!--</div>-->
+                <div class="col-md-3"><!--szczegoly-->
+                    <a th:href="@{'/item/details/' + ${item.getId()}}" class="btn btn-outline-primary active" role="button" aria-pressed="true">Więcej</a>
                 </div>
-                <div class="col-md-6"><!--szczegoly-->
-                    <a th:href="@{'/item/details/' + ${item.getId()}}">Edytuj</a>
+                <div class="col-md-3">
+                    <a th:href="@{'/item//' + ${item.getId()}}" class="btn btn btn-outline-primary active" role="button" aria-pressed="true">Kupuję!</a></div>
+                <div class="col-md-3">
+                    <a th:href="@{'/item//' + ${item.getId()}}" class="btn btn-outline-primary active btn-sm" role="button" aria-pressed="true">Dodaj do listy życzeń</a>
                 </div>
             </div>
+
+            <!--<div class="dropdown">-->
+                <!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >-->
+                    <!--Action <span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" >-->
+                    <!--<li><a href="#">Action</a></li>-->
+                    <!--<li><a href="#">Another action</a></li>-->
+                    <!--<li><a href="#">Something else here</a></li>-->
+                    <!--<li role="separator" class="divider"></li>-->
+                    <!--<li><a href="#">Separated link</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
         </div>
     </div>
-
 </div>
 
 </body>

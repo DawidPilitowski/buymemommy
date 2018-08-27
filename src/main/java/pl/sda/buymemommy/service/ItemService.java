@@ -21,7 +21,6 @@ public class ItemService {
     public void addProduct(Item item) {
     }
 
-
     public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
