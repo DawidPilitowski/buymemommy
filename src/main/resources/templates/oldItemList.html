@@ -32,17 +32,18 @@
             </div>
             <div class="col-md-1"><p th:text="${item.getPrice()}"></p></div>
             <div class="col-md-3 row">
-                <div class="col-md-3"><!--usuwanie-->
-                    <a th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a>
+                <div class="dropdown col-md-4">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Więcej <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{'/item/details/' + ${item.getId()}}">Zobacz szczegóły</a></li>
+                        <li><a th:href="@{'/item/edit/' + ${item.getId()}}">Edytuj</a></li>
+                        <li><a th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a></li>
+
+                    </ul>
                 </div>
-                <div class="col-md-3"><!--edycja-->
-                    <a th:href="@{'/item/edit/' + ${item.getId()}}">Edytuj</a>
-                </div>
-                <div class="col-md-3"><!--szczegoly-->
-                    <a th:href="@{'/item/details/' + ${item.getId()}}" class="btn btn-outline-primary active"
-                       role="button" aria-pressed="true">Więcej</a>
-                </div>
-                <div class="dropdown col-md-3">
+                <div class="dropdown col-md-4">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Kupuję! <span class="caret"></span>
                     </button>
