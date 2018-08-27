@@ -3,9 +3,9 @@
 <head th:fragment="links">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title th:if="${title} == null">Title unknown</title>
+    <title th:if="${title} == null">[UNKNOWN] buymemommy.com</title>
     <title th:if="${title} != null" th:text="${title}"></title>
-    <meta name="description" content="">
+    <meta name="description" content="Najlepsza pomoc zabieganej mamy! Przyjazny sklep z największym wyborem zabawek dla Twojego dziecka.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
@@ -172,9 +172,9 @@
         </nav>
         <div class="content-inner">
             <!-- Page Header-->
-            <header class="page-header">
+            <header th:fragment="secondary-header" class="page-header">
                 <div class="container-fluid">
-                    <h2 class="no-margin-bottom">Bread-crumbs</h2>
+                    <h2 class="no-margin-bottom">Tytuł <!-- TODO DELETE SPAN--><span th:text="${loggedInUserDTO} + ' ::: ' + ${loggedInPrincipal}"></span></h2>
                 </div>
             </header>
 
