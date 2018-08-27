@@ -25,4 +25,5 @@
 /.nb-gradle/
 
 ### Custom ###
-application.properties
+/src/main/resources/application.properties
+

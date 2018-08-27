@@ -39,14 +39,38 @@ public class ItemController {
         List<Item> itemList = itemService.getAllItems();
         model.addAttribute("itemList", itemList);
         model.addAttribute("images", itemList.stream().map(item -> {
-            if(item.getImage().length == 0){
+            if (item.getImage().length == 0) {
                 return "";
-            }else{
+            } else {
                 return new String(Base64.getEncoder().encode(item.getImage()));
             }
         }).collect(Collectors.toList()));
-//        model.addAttribute("category", itemList);
         return "oldItemList";
+    }
+
+    @GetMapping(path = "/itemListSearch")
+    public String itemList(Model model,
+                           @RequestParam(name = "main", defaultValue = "") String main,
+                           @RequestParam(name = "sub", defaultValue = "") String sub,
+                           @RequestParam(name = "phrase", defaultValue = "") String phrase,
+                           @RequestParam(name = "ageFrom", defaultValue = "0") int ageFrom) {
+        List<Category> searchCategory = categoryComponent.betterFind(main, sub);
+
+        List<Item> itemList = itemService.searchBy(searchCategory, phrase, ageFrom);
+
+        model.addAttribute("itemList", itemList);
+        model.addAttribute("images", returnAllImages(itemList));
+        return "oldItemList";
+    }
+
+    private List<String> returnAllImages(List<Item> itemList) {
+        return itemList.stream().map(item -> {
+            if (item.getImage().length == 0) {
+                return "";
+            } else {
+                return new String(Base64.getEncoder().encode(item.getImage()));
+            }
+        }).collect(Collectors.toList());
     }
 
     @GetMapping(path = "/test/{main}/{sub}")
@@ -55,6 +79,13 @@ public class ItemController {
         Category searchCategory = categoryComponent.find(main, sub);
         itemList = itemService.findByCategory(searchCategory);
         model.addAttribute("itemList", itemList);
+        model.addAttribute("images", itemList.stream().map(item -> {
+            if (item.getImage().length == 0) {
+                return "";
+            } else {
+                return new String(Base64.getEncoder().encode(item.getImage()));
+            }
+        }).collect(Collectors.toList()));
         return "oldItemList";
     }
 
@@ -63,6 +94,13 @@ public class ItemController {
         List<Item> itemList;
         itemList = itemService.findByCategory(categoryComponent.find(main));
         model.addAttribute("itemList", itemList);
+        model.addAttribute("images", itemList.stream().map(item -> {
+            if (item.getImage().length == 0) {
+                return "";
+            } else {
+                return new String(Base64.getEncoder().encode(item.getImage()));
+            }
+        }).collect(Collectors.toList()));
         return "oldItemList";
     }
 
@@ -70,8 +108,30 @@ public class ItemController {
     public String itemList(Model model, @PathVariable(name = "phrase") String phrase) {
         List<Item> itemList = itemService.searchByName(phrase);
         model.addAttribute("itemList", itemList);
+        model.addAttribute("images", itemList.stream().map(item -> {
+            if (item.getImage().length == 0) {
+                return "";
+            } else {
+                return new String(Base64.getEncoder().encode(item.getImage()));
+            }
+        }).collect(Collectors.toList()));
         return "oldItemList";
     }
+
+    @GetMapping(path = "/itemSearchByAge")
+    public String searchByAge(Model model, @RequestParam(name = "age") int age) {
+        List<Item> itemList = itemService.searchByAge(age);
+        model.addAttribute("itemList", itemList);
+        model.addAttribute("images", itemList.stream().map(item -> {
+            if (item.getImage().length == 0) {
+                return "";
+            } else {
+                return new String(Base64.getEncoder().encode(item.getImage()));
+            }
+        }).collect(Collectors.toList()));
+        return "oldItemList";
+    }
+
 
     @GetMapping(path = "/addItem")
     public String add(Model model) {
