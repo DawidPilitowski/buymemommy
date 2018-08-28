@@ -7,3 +7,18 @@
 .brand-text {
     /*color: pink;*/
 }
+
+.image-autowidth{
+    height: 80px;
+    max-height: 80px;
+    width: auto;
+}
+.image-width{
+    height: 300px;
+    max-height:400px;
+    width:auto;
+    border: #85b4f2 solid 2px;
+}
+.align-left-object{
+    left:0px;
+}

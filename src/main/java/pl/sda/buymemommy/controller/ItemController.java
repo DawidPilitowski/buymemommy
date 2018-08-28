@@ -45,7 +45,7 @@ public class ItemController {
                 return new String(Base64.getEncoder().encode(item.getImage()));
             }
         }).collect(Collectors.toList()));
-        return "oldItemList";
+        return "itemList";
     }
 
     @GetMapping(path = "/itemListSearch")
@@ -60,7 +60,7 @@ public class ItemController {
 
         model.addAttribute("itemList", itemList);
         model.addAttribute("images", returnAllImages(itemList));
-        return "oldItemList";
+        return "itemList";
     }
 
     private List<String> returnAllImages(List<Item> itemList) {
@@ -72,65 +72,6 @@ public class ItemController {
             }
         }).collect(Collectors.toList());
     }
-
-//    @GetMapping(path = "/test/{main}/{sub}")
-//    public String test(Model model, @PathVariable(name = "main") String main, @PathVariable(name = "sub", required = false) String sub) {
-//        List<Item> itemList;
-//        Category searchCategory = categoryComponent.find(main, sub);
-//        itemList = itemService.findByCategory(searchCategory);
-//        model.addAttribute("itemList", itemList);
-//        model.addAttribute("images", itemList.stream().map(item -> {
-//            if (item.getImage().length == 0) {
-//                return "";
-//            } else {
-//                return new String(Base64.getEncoder().encode(item.getImage()));
-//            }
-//        }).collect(Collectors.toList()));
-//        return "oldItemList";
-//    }
-//
-//    @GetMapping(path = "/test/{main}")
-//    public String test(Model model, @PathVariable(name = "main") String main) {
-//        List<Item> itemList;
-//        itemList = itemService.findByCategory(categoryComponent.find(main));
-//        model.addAttribute("itemList", itemList);
-//        model.addAttribute("images", itemList.stream().map(item -> {
-//            if (item.getImage().length == 0) {
-//                return "";
-//            } else {
-//                return new String(Base64.getEncoder().encode(item.getImage()));
-//            }
-//        }).collect(Collectors.toList()));
-//        return "oldItemList";
-//    }
-//
-//    @GetMapping(path = "/itemList/{phrase}")
-//    public String itemList(Model model, @PathVariable(name = "phrase") String phrase) {
-//        List<Item> itemList = itemService.searchByName(phrase);
-//        model.addAttribute("itemList", itemList);
-//        model.addAttribute("images", itemList.stream().map(item -> {
-//            if (item.getImage().length == 0) {
-//                return "";
-//            } else {
-//                return new String(Base64.getEncoder().encode(item.getImage()));
-//            }
-//        }).collect(Collectors.toList()));
-//        return "oldItemList";
-//    }
-//
-//    @GetMapping(path = "/itemSearchByAge")
-//    public String searchByAge(Model model, @RequestParam(name = "age") int age) {
-//        List<Item> itemList = itemService.searchByAge(age);
-//        model.addAttribute("itemList", itemList);
-//        model.addAttribute("images", itemList.stream().map(item -> {
-//            if (item.getImage().length == 0) {
-//                return "";
-//            } else {
-//                return new String(Base64.getEncoder().encode(item.getImage()));
-//            }
-//        }).collect(Collectors.toList()));
-//        return "oldItemList";
-//    }
 
 
     @GetMapping(path = "/addItem")
