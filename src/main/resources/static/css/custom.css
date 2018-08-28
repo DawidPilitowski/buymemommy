@@ -5,7 +5,47 @@
 }
 
 .brand-text {
-    /*color: pink;*/
+    font-family: 'Permanent Marker', cursive;
+    color: black;
+}
+
+nav.navbar {
+    background: #f7e0f3;
+    background-image: url("/img/bg.jpg");
+    -webkit-background-size: 17px;
+    background-size: 17px;
+    /*background-position: 0px 50px;*/
+}
+
+nav.navbar .menu-btn span {
+    background: black;
+}
+
+nav.navbar .menu-btn span:nth-of-type(2)::after {
+    background: black;
+}
+
+nav.navbar .menu-btn span:nth-of-type(2)::before {
+    background: black;
+}
+
+i.icon-search, i.fa-bell-o, i.fa-envelope-o, i.fa-sign-out, span.d-sm-inline {
+    color: black;
+}
+
+.login-page::before {
+    background-size: 600px;
+    background-position: 100px 50px;
+}
+
+nav.side-navbar a[aria-expanded="true"] {
+background: #F7A4E6;
+}
+
+nav.side-navbar ul li a:hover {
+    background: #f7e0f3;
+    border-left: 4px solid #F7A4E6;
+    color: #000;
 }
 
 .image-autowidth{
