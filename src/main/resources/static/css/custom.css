@@ -39,7 +39,8 @@ i.icon-search, i.fa-bell-o, i.fa-envelope-o, i.fa-sign-out, span.d-sm-inline {
 }
 
 nav.side-navbar a[aria-expanded="true"] {
-background: #F7A4E6;
+    background: #f7a4e6;
+    color: #000;
 }
 
 nav.side-navbar ul li a:hover {
