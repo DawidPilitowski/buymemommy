@@ -48,3 +48,25 @@ nav.side-navbar ul li a:hover {
     border-left: 4px solid #F7A4E6;
     color: #000;
 }
+
+.image-autowidth{
+    height: 80px;
+    max-height: 80px;
+    width: auto;
+}
+.image-width{
+    height: 300px;
+    max-height:400px;
+    width:auto;
+
+}
+.align-left-object{
+    left:0px;
+}
+
+.price {
+    font-weight: bolder;
+    font-family: "Poppins", sans-serif;
+    font-size: xx-large;
+}
+.top-buffer { margin-top:20px; }
