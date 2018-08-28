@@ -57,8 +57,15 @@ nav.side-navbar ul li a:hover {
     height: 300px;
     max-height:400px;
     width:auto;
-    border: #85b4f2 solid 2px;
+
 }
 .align-left-object{
     left:0px;
 }
+
+.price {
+    font-weight: bolder;
+    font-family: "Poppins", sans-serif;
+    font-size: xx-large;
+}
+.top-buffer { margin-top:20px; }

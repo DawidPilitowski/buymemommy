@@ -58,30 +58,33 @@
                                                 </td>
                                                 <td><p th:text="${item.getPrice()}"></p></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-default dropdown-toggle"
-                                                            data-toggle="dropdown">
-                                                        Więcej <span class="caret"></span>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a th:href="@{'/item/details/' + ${item.getId()}}">Zobacz
-                                                            szczegóły</a></li>
-                                                        <li sec:authorize="isAuthenticated()"><a
-                                                                th:href="@{'/item/edit/' + ${item.getId()}}">Edytuj</a>
-                                                        </li>
-                                                        <li sec:authorize="isAuthenticated()"><a
-                                                                th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a>
-                                                        </li>
-                                                    </ul>
-                                                    <button type="button" class="btn btn-default dropdown-toggle"
-                                                            data-toggle="dropdown">
-                                                        Kupuję! <span class="caret"></span>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a th:href="@{'/item//' + ${item.getId()}}">Kupuję</a></li>
-                                                        <li><a th:href="@{'/item//' + ${item.getId()}}">Dodaj do listy
-                                                            życzeń</a></li>
+                                                    <div>
+                                                        <button type="button" class="btn btn-default dropdown-toggle"
+                                                                data-toggle="dropdown">
+                                                            Więcej <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a th:href="@{'/item/details/' + ${item.getId()}}">Zobacz
+                                                                szczegóły</a></li>
+                                                            <li sec:authorize="isAuthenticated()"><a
+                                                                    th:href="@{'/item/edit/' + ${item.getId()}}">Edytuj</a>
+                                                            </li>
+                                                            <li sec:authorize="isAuthenticated()"><a
+                                                                    th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div>
+                                                        <button type="button" class="btn btn-default dropdown-toggle"
+                                                                data-toggle="dropdown">Kupuję! <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a th:href="@{'/item/shoppingCart/' + ${item.getId()}}">Kupuję</a></li>
+                                                            <li><a th:href="@{'/item/wishList/' + ${item.getId()}}">Dodaj do listy
+                                                                życzeń</a></li>
 
-                                                    </ul>
+                                                        </ul>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             </tbody>
