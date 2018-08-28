@@ -61,7 +61,7 @@ public class IndexController {
 
     @GetMapping(path = "/tabelki")
     public String getTables() {
-        return "tables.html";
+        return "itemList.html";
     }
 
     // TODO : <--- REMOVE

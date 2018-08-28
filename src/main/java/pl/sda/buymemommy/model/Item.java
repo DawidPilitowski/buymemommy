@@ -20,7 +20,7 @@ public class Item {
     private String itemName;
     private String description;
     private int itemLimit;
-    private String price;
+    private Double price;
     private Gender gender;
     private int ageFrom;
     private int ageTo;
