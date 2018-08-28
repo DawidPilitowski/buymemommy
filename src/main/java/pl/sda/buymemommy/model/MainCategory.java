@@ -21,5 +21,10 @@ public class MainCategory {
     private Long id;
     private String nameCategory;
 
+    public String getURN() {
+        String urn = nameCategory.replaceAll(",|\\.|'|-", "");
+        urn = urn.replaceAll(" ", "-");
+        return urn;
+    }
 //    private List<Subcategory> subcategoryList;
 }

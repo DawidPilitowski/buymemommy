@@ -25,58 +25,58 @@ public class CategoryComponent {
         this.categoryService = categoryService;
 
         createCategory("Gry",
-                "edukacyjne",
-                "planszowe",
-                "komputerowe",
-                "zręcznościowe",
-                "strategiczne",
-                "logiczne",
-                "słowne i liczbowe",
-                "karciane",
-                "quizy",
-                "pozostałe");
+                "Edukacyjne",
+                "Planszowe",
+                "Komputerowe",
+                "Zręcznościowe",
+                "Strategiczne",
+                "Logiczne",
+                "Słowne i liczbowe",
+                "Karciane",
+                "Quizy",
+                "Pozostałe");
 
         createCategory("Klocki",
                 "LEGO",
                 "Cobi",
                 "Mega blocks",
-                "magnetyczne",
-                "drewniane",
-                "wafle",
-                "pozostałe");
+                "Magnetyczne",
+                "Drewniane",
+                "Wafle",
+                "Pozostałe");
 
-        createCategory("Zabawki edukacyjne",
-                "instrumenty muzyczne",
-                "książeczki",
-                "sortery",
-                "stoliki i stojaki gimnastyczne",
-                "układanki i przeplatanki",
-                "tablety, telefony i komputery",
-                "pozostałe");
+        createCategory("Edukacyjne",
+                "Instrumenty muzyczne",
+                "Książeczki",
+                "Sortery",
+                "Stoliki i stojaki gimnastyczne",
+                "Układanki i przeplatanki",
+                "Tablety, telefony i komputery",
+                "Pozostałe");
 
         createCategory("Puzzle",
-                "tradycyjne",
-                "piankowe",
+                "Tradycyjne",
+                "Piankowe",
                 "3D/4D",
-                "drewniane",
-                "pozostałe"
+                "Drewniane",
+                "Pozostałe"
         );
         createCategory("Pojazdy",
-                "wózki",
-                "pchacze",
-                "rowerki",
-                "hulajnogi",
-                "akumulatorowe",
-                "kolejki i akcesoria",
-                "autka i akcesoria"
+                "Wózki",
+                "Pchacze",
+                "Rowerki",
+                "Hulajnogi",
+                "Akumulatorowe",
+                "Kolejki i akcesoria",
+                "Autka i akcesoria"
         );
-        createCategory("Zabawki do kąpieli", "zabawki do kąpieli");
+        createCategory("Kąpielowe", "Zabawki do kąpieli");
         createCategory("Pluszaki",
-                "tradycyjne",
-                "edukacyjne",
-                "interaktywne");
+                "Tradycyjne",
+                "Edukacyjne",
+                "Interaktywne");
 
-        createCategory("Zabawki z bajek i reklam",
+        createCategory("Z bajek i reklam",
                 "Auta",
                 "Bing",
                 "Masza i niedzwiedź",
@@ -84,29 +84,28 @@ public class CategoryComponent {
                 "Kraina Lodu",
                 "Kubuś Puchatek");
 
-        createCategory("Zabawki ogrodowe",
-                "domki",
-                "baseny",
-                "zjeżdzalnie",
-                "trampoliny",
-                "piaskownice");
+        createCategory("Ogrodowe",
+                "Domki",
+                "Baseny",
+                "Zjeżdzalnie",
+                "Trampoliny",
+                "Piaskownice");
 
         createCategory("Lalki",
-                "bobasy",
-                "księżniczki i wróżki",
-                "barbie",
-                "szmaciane",
-                "domki, meble dla lalek",
-                "wózki dla lalek");
+                "Bobasy",
+                "Księżniczki i wróżki",
+                "Barbie",
+                "Szmaciane",
+                "Domki, meble dla lalek",
+                "Wózki dla lalek");
 
         createCategory("Niemowlęce",
-                "grzechotki",
-                "przywieszki",
-                "maty i stojaki gimnastyczne",
-                "stoliki interaktywne",
-                "bujaczki i leżaczki",
-                "karuzele i pozytywki");
-
+                "Grzechotki",
+                "Przywieszki",
+                "Maty i stojaki gimnastyczne",
+                "Stoliki interaktywne",
+                "Bujaczki i leżaczki",
+                "Karuzele i pozytywki");
     }
 
     private void createCategory(String mainCategoryName, String... subcategoriesNames) {
