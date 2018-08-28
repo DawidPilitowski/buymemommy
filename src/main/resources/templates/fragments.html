@@ -159,9 +159,9 @@
             <!-- Sidebar Navigation Menus-->
             <span class="heading">Kategorie</span>
             <ul class="list-unstyled">
-                <li th:each="mainCategory : ${categories}"><a th:href="'#'+${mainCategory.key.getNameCategory()}" aria-expanded="false" data-toggle="collapse"><!--<i th:class="${category.getCategoryIcon}"></i>--><span class="categories" th:text="${mainCategory.key.getNameCategory()}"></span></a> <!-- TODO : OBSLUGE IKON DODAC-->
-                    <ul th:id="${mainCategory.key.getNameCategory()}" class="collapse list-unstyled">
-                        <li th:each="subcategory: ${mainCategory.value}"><a th:href="@{'/itemList/' + ${mainCategory.key.getNameCategory()} + '/' + ${subcategory.getName()}}" th:text="${subcategory.getName()}"></a></li> <!-- TODO : NIESTETY NIE MA W KATEGORII PRZECHOWYWANYCH SUBKATEGORII -->
+                <li th:each="mainCategory : ${categories}"><a th:href="'#'+${mainCategory.key.getURN()}" aria-expanded="false" data-toggle="collapse"><!--<i th:class="${category.getCategoryIcon}"></i>--><span class="categories" th:text="${mainCategory.key.getNameCategory()}"></span></a> <!-- TODO : OBSLUGE IKON DODAC-->
+                    <ul th:id="${mainCategory.key.getURN()}" class="collapse list-unstyled">
+                        <li th:each="subcategory: ${mainCategory.value}"><a th:href="@{'/item/itemListSearch?main=' + ${mainCategory.key.getNameCategory()} + '&sub=' + ${subcategory.getName()}}" th:text="${subcategory.getName()}"></a></li>
                     </ul>
                 </li>
             </ul>
