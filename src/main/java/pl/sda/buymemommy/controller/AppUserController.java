@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.buymemommy.model.AppUser;
+import pl.sda.buymemommy.model.dto.AppUserEditPasswordDTO;
 import pl.sda.buymemommy.model.dto.AppUserEditProfileDTO;
 import pl.sda.buymemommy.model.dto.AppUserRegisterDTO;
 import pl.sda.buymemommy.repository.AppUserRepository;
@@ -33,7 +34,7 @@ public class AppUserController {
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user_dto", new AppUserRegisterDTO());
-        return "oldRegister";
+        return "register";
     }
 
     @PostMapping("/register")
@@ -42,15 +43,16 @@ public class AppUserController {
             model.addAttribute("user_dto", dto);
             model.addAttribute("error_message",
                     "Nieprawidłowe hasło!");
-            return "oldRegister";
+            return "register";
         }
         if (!appUserService.registerUser(dto)) {
             model.addAttribute("user_dto", dto);
 
             model.addAttribute("error_message",
                     "Login jest już zajęty!");
-            return "oldRegister";
+            return "register";
         }
+        System.out.println(dto.toString());
         return "redirect:/login";
     }
 
@@ -83,17 +85,18 @@ public class AppUserController {
         userEditProfileDTO.setAddress(u.getAddress());
 
         model.addAttribute("userDTO", userEditProfileDTO);//user dto pobierać 3 elementy zmienić w widoku
-        System.out.println(userEditProfileDTO.toString());
+//        System.out.println(userEditProfileDTO.toString());
         return "edit";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editPost(AppUserEditProfileDTO userEditProfileDTO, @PathVariable(name = "id") Long id, BindingResult result) {
+    public String editPost(AppUserEditProfileDTO userEditProfileDTO, @PathVariable(name = "id")
+            Long id, BindingResult result) {
 
-        if (result.hasFieldErrors("email")) {
+        if (result.hasFieldErrors("id")) {
             return "edit";
         }
-            appUserService.updateUserDTO(userEditProfileDTO);
+        appUserService.updateUserDTO(userEditProfileDTO);
 
         //        if (appUserService.getLoggedInUser().isAdmin()) {
 //        } else {
@@ -110,7 +113,7 @@ public class AppUserController {
         AppUser userByUsername = appUserService.findUserByUsername(username);
         if (userByUsername != null) {
             model.addAttribute("profile", userByUsername);
-            return "oldProfile";
+            return "profile";
         }
         return "redirect:/error";
     }
@@ -120,4 +123,59 @@ public class AppUserController {
         appUserService.deleteUser(id);
         return "redirect:/register";
     }
+
+    @GetMapping(path = "/profile/editPassword/{id}")
+    public String showEditUserPasswordForm(@PathVariable("id") Long id, Model model) {
+
+        AppUser user;
+        AppUser logedUser = appUserService.getLoggedInUser();
+
+        if (id == null) {
+            return "userNotFound";
+        }
+        if (!logedUser.getId().equals(id)) {
+            return "permission-denied";
+        }
+        if (logedUser.isAdmin() || logedUser.getId().equals(id)) {
+            Optional<AppUser> found = appUserRepository.findById(id);
+            if (found.isPresent()) {
+                user = found.get();
+            } else {
+                return "error";
+            }
+        } else {
+            user = logedUser;
+        }
+        AppUserEditPasswordDTO appUserEditPasswordDTO = new AppUserEditPasswordDTO();
+        appUserEditPasswordDTO.setId(user.getId());
+        appUserEditPasswordDTO.setPassword(user.getPassword());
+        appUserEditPasswordDTO.setConfirm_password(user.getPassword());
+
+        model.addAttribute("userEditPasswordDTO", appUserEditPasswordDTO);
+        return "editPassword";
+    }
+
+    @PostMapping(path = "/profile/editPassword/{id}")
+    public String editUserPassword(AppUserEditPasswordDTO userEditPasswordDTO,
+                                   @PathVariable("id") Long id,
+                                   BindingResult bindingResult) {
+
+        appUserService.editUserPasswordDTO(userEditPasswordDTO);
+
+        return "redirect:/login";
+    }
+    @GetMapping(path = "")
+    public String removeUser(@PathVariable(name = "id")Long id){
+        AppUser loggedInUser = appUserService.getLoggedInUser();
+        if (!loggedInUser.getId().equals(id)) {
+            return "permission-denied";
+        }else if(!loggedInUser.isAdmin()){
+            return "permission-denied";
+        }else {
+            appUserService.removeUser(id);
+            return "redirect:/register";
+        }
+    }
+
+
 }

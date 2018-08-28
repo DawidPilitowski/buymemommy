@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.buymemommy.model.AppUser;
+import pl.sda.buymemommy.model.dto.AppUserEditPasswordDTO;
 import pl.sda.buymemommy.model.dto.AppUserEditProfileDTO;
 import pl.sda.buymemommy.model.dto.AppUserRegisterDTO;
 import pl.sda.buymemommy.repository.AppUserRepository;
@@ -71,6 +72,13 @@ public class AppUserService {
 
     public Optional<AppUser> find(Long id) {
         return appUserRepository.findById(id);
+    }
+
+    public void editUserPasswordDTO(AppUserEditPasswordDTO userEditPasswordDTO) {
+    }
+
+    public void removeUser(Long id) {
+        appUserRepository.deleteById(id);
     }
 
 //    rejestracja użytkownika
