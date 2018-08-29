@@ -1,12 +1,64 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      layout:decorator="layout">
-<head>
-    <title>Error</title>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments::links">
 </head>
-<body>
-In progress!!!!
 
+<body>
+
+<div sec:authorize="!hasRole('ROLE_ADMIN')">
+    <div class="row align-content-center justify-content-center">
+        <div class="row align-content-center justify-content-center">
+            <img class="error-image" src="/img/err.jpg">
+        </div>
+    </div>
+    <div class="row align-content-center justify-content-center">
+        <span>Oops... something went wrong... Don't be mad, human...</span>
+    </div>
 </div>
+
+<div sec:authorize="!hasRole('ROLE_ADMIN')" >
+    <div class="row align-content-center justify-content-center">
+        <div class="row align-content-center justify-content-center">
+            <h2>Error</h2>
+        </div>
+    </div>
+    <div class="row align-content-center justify-content-center">
+        <table class="error-table">
+            <tr>
+                <td>Date</td>
+                <td th:text="${timestamp}"/>
+            </tr>
+            <tr>
+                <td>Path</td>
+                <td th:text="${path}"/>
+            </tr>
+            <tr>
+                <td>Error</td>
+                <td th:text="${error}"/>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td th:text="${status}"/>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td th:text="${message}"/>
+            </tr>
+            <tr>
+                <td>Exception</td>
+                <td th:text="${exception}"/>
+            </tr>
+            <tr>
+                <td>Trace</td>
+                <td>
+                    <pre th:text="${trace}"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 </body>
 </html>
