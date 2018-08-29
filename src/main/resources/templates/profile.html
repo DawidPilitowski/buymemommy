@@ -75,14 +75,14 @@
                                          data-msg="Please enter your username" th:text="${profile.getAddress()}"></div>
                                 </div>
                                 <!--<div>-->
-                                    <!--<a class="btn btn-outline-secondary"-->
-                                       <!--th:href="@{/profile/editPassword/{id}(id=${profile.getId()})}">Edytuj hasło</a>-->
+                                <!--<a class="btn btn-outline-secondary"-->
+                                <!--th:href="@{/profile/editPassword/{id}(id=${profile.getId()})}">Edytuj hasło</a>-->
                                 <!--</div>-->
                                 <div>
                                     <div th:href="@{'/edit/'+${profile.getId()}}">
                                         <form th:action="@{'/edit/' + ${profile.getId()}}" method="get">
-                                        <input type="hidden" name="id" th:value="${profile.id}"/>
-                                        <button type="submit" class="btn btn-primary btn-block">Edytuj profil</button>
+                                            <input type="hidden" name="id" th:value="${profile.id}"/>
+                                            <button type="submit" class="btn btn-primary btn-block">Edytuj profil</button>
                                         </form>
                                     </div>
                                 </div>
@@ -93,8 +93,8 @@
                                     </form>
                                 </div>
                                 <!--<div>-->
-                                    <!--<button type="submit" class="btn btn-primary" th:value="Zatwierdź">Zatwierdź-->
-                                    <!--</button>-->
+                                <!--<button type="submit" class="btn btn-primary" th:value="Zatwierdź">Zatwierdź-->
+                                <!--</button>-->
                                 <!--</div>-->
                                 <!--<small>Nie masz konta?</small>-->
                                 <!--<a href="register" class="signup">Rejestracja</a>-->
@@ -105,8 +105,7 @@
             </div>
         </div>
         <div class="copyrights text-center">
-            <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a>
-                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+            <p style="color: black">© 2018 Copyright: <a href="https://www.buymemommy.com" class="external"> buymemommy.com</a>
             </p>
         </div>
     </div>
