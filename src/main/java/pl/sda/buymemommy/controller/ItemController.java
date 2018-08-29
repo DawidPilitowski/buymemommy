@@ -80,7 +80,7 @@ public class ItemController {
         List<Category> categories = categoryService.getAllList();
         model.addAttribute("item", item);
         model.addAttribute("categories", categories);
-        return "oldAddItem";
+        return "addItem";
     }
 
     @PostMapping(path = "/addItem")
@@ -118,7 +118,7 @@ public class ItemController {
             model.addAttribute("itemDto", itemDto);
 
         }
-        return "oldItemEdit";
+        return "itemEdit";
     }
 
     @PostMapping(path = "/edit")
@@ -149,4 +149,5 @@ public class ItemController {
         }
         return "itemDetails";
     }
+
 }

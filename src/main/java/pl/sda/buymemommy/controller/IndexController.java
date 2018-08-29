@@ -76,6 +76,12 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping(path = "/forms")
+    public String getPath(){
+        return "forms";
+    }
+
+
     // TODO : USUNAC, stworzyc klasy
 
     @Data
