@@ -80,7 +80,7 @@ public class ItemController {
         List<Category> categories = categoryService.getAllList();
         model.addAttribute("item", item);
         model.addAttribute("categories", categories);
-        return "addItem";
+        return "addItemForm";
     }
 
     @PostMapping(path = "/addItem")
