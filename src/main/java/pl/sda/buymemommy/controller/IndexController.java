@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Controller
 @ControllerAdvice
+@Scope("session")
 public class IndexController {
     @Autowired
     private CategoryComponent categoryComponent;
@@ -32,6 +34,7 @@ public class IndexController {
         String loggedInUserName = "difolt";
         String loggedInPrincipal = "difolt";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication.getPrincipal();
         if (authentication != null) {
             loggedInUserName = authentication.getName();
             loggedInPrincipal = authentication.getPrincipal().toString();

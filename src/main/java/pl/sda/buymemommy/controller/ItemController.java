@@ -1,12 +1,14 @@
 package pl.sda.buymemommy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.sda.buymemommy.components.CategoryComponent;
 import pl.sda.buymemommy.model.Category;
+import pl.sda.buymemommy.model.Gender;
 import pl.sda.buymemommy.model.Item;
 import pl.sda.buymemommy.model.dto.ItemDTO;
 import pl.sda.buymemommy.service.CategoryService;
@@ -22,9 +24,8 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/item/")
+//@Scope("session")
 public class ItemController {
-
-
     @Autowired
     private ItemService itemService;
 
@@ -53,10 +54,11 @@ public class ItemController {
                            @RequestParam(name = "main", defaultValue = "") String main,
                            @RequestParam(name = "sub", defaultValue = "") String sub,
                            @RequestParam(name = "phrase", defaultValue = "") String phrase,
-                           @RequestParam(name = "ageFrom", defaultValue = "0") int ageFrom) {
+                           @RequestParam(name = "ageFrom", defaultValue = "0") int ageFrom,
+                           @RequestParam(name = "gender", required = false)String gender) {
         List<Category> searchCategory = categoryComponent.betterFind(main, sub);
 
-        List<Item> itemList = itemService.searchBy(searchCategory, phrase, ageFrom);
+        List<Item> itemList = itemService.searchBy(searchCategory, phrase, ageFrom, gender == null ? null : Gender.valueOf(gender));
 
         model.addAttribute("itemList", itemList);
         model.addAttribute("images", returnAllImages(itemList));
@@ -79,7 +81,7 @@ public class ItemController {
         Item item = new Item();
         List<Category> categories = categoryService.getAllList();
         model.addAttribute("item", item);
-        model.addAttribute("categories", categories);
+        model.addAttribute("categories2", categories);
         return "addItemForm";
     }
 
@@ -105,7 +107,7 @@ public class ItemController {
         return "redirect:/item/itemList";
     }
 
-    @GetMapping(path = "/edit/{id}")
+    @GetMapping(path = "/editItem/{id}")
     public String editOfItem(Model model, @PathVariable(name = "id") Long id) {
         Optional<Item> itemOptional = itemService.find(id);
         if (itemOptional.isPresent()) {
@@ -121,7 +123,7 @@ public class ItemController {
         return "itemEdit";
     }
 
-    @PostMapping(path = "/edit")
+    @PostMapping(path = "/editItem")
     public String setItemsEdit(ItemDTO item) {
         Optional<Item> editedItem = itemService.find(item.getId());
         if (editedItem.isPresent()) {

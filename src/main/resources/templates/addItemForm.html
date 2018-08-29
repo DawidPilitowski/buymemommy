@@ -26,9 +26,9 @@
     </header>
 
     <div class="page-content d-flex align-items-stretch">
-        <!--&lt;!&ndash; Side Navbar &ndash;&gt;-->
-        <!--<nav th:replace="fragments::sidebar">-->
-        <!--</nav>-->
+        <!-- Side Navbar -->
+        <nav th:replace="fragments::sidebar">
+        </nav>
 
         <div class="content-inner">
             <!-- Page Header-->
@@ -50,7 +50,7 @@
                                     <h3 class="h4">Dodaj produkt</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form th:action="@{'/item/addItem'}" th:object="${item}" class="form-horizontal" th:method="post" enctype="multipart/form-data">
+                                    <form th:action="@{/item/addItem}" th:object="${item}" class="form-horizontal" th:method="post" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label class="col-sm-3 form-control -label" for="itemName" >Nazwa produktu:</label>
                                             <div class="col-sm-9">
@@ -98,7 +98,7 @@
                                             </div>
                                             <div class="col-md-5">
                                                 <select class="form-control" id="categoryList" th:field="*{categoryList}">
-                                                    <option th:each="category : ${categories}"
+                                                    <option th:each="category : ${categories2}"
                                                             th:text="${category.getMainCategory().getNameCategory()}+ ' ' +${category.getSubcategory().getName()}"
                                                             th:value="${category.id}"></option>
                                                 </select>
