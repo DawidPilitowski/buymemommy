@@ -56,7 +56,6 @@ public class AppUserController {
                     "Login jest już zajęty!");
             return "register";
         }
-        System.out.println(dto.toString());
         return "redirect:/login";
     }
 
