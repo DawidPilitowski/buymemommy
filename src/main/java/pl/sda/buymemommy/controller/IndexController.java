@@ -34,7 +34,6 @@ public class IndexController {
         String loggedInUserName = "difolt";
         String loggedInPrincipal = "difolt";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        authentication.getPrincipal();
         if (authentication != null) {
             loggedInUserName = authentication.getName();
             loggedInPrincipal = authentication.getPrincipal().toString();
