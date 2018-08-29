@@ -13,7 +13,9 @@ import pl.sda.buymemommy.model.dto.AppUserRegisterDTO;
 import pl.sda.buymemommy.repository.AppUserRepository;
 import pl.sda.buymemommy.service.AppUserService;
 
+import java.util.Base64;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class AppUserController {
@@ -113,6 +115,16 @@ public class AppUserController {
         AppUser userByUsername = appUserService.findUserByUsername(username);
         if (userByUsername != null) {
             model.addAttribute("profile", userByUsername);
+
+            //TODO dodanie zdjęcia
+
+//            model.addAttribute("images", userByUsername.stream().map(item -> {
+//                if (item.getImage().length == 0) {
+//                    return "";
+//                } else {
+//                    return new String(Base64.getEncoder().encode(item.getImage()));
+//                }
+//            }).collect(Collectors.toList()));
             return "profile";
         }
         return "redirect:/error";
@@ -164,7 +176,7 @@ public class AppUserController {
 
         return "redirect:/login";
     }
-    @GetMapping(path = "")
+    @GetMapping(path = "/testestest")
     public String removeUser(@PathVariable(name = "id")Long id){
         AppUser loggedInUser = appUserService.getLoggedInUser();
         if (!loggedInUser.getId().equals(id)) {
