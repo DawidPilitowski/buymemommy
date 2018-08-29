@@ -29,7 +29,7 @@ nav.navbar .menu-btn span:nth-of-type(2)::before {
     background: black;
 }
 
-i.icon-search, i.fa-bell-o, i.fa-envelope-o, i.fa-sign-out, i.fa-sign-in, span.d-sm-inline, i.fa-user-plus, i.fa-bars, i.fa-list-ul, i.fa-shopping-cart, i.fa-user {
+i.icon-search, i.fa-bell-o, i.fa-envelope-o, i.fa-sign-out, i.fa-sign-in, span.d-sm-inline, i.fa-user-plus, i.fa-bars, i.fa-list-ul, i.fa-shopping-cart, i.fa-user, i.fa-list-alt, i.fa-clipboard {
     color: black;
 }
 
@@ -49,19 +49,21 @@ nav.side-navbar ul li a:hover {
     color: #000;
 }
 
-.image-autowidth{
+.image-autowidth {
     height: 80px;
     max-height: 80px;
     width: auto;
 }
-.image-width{
+
+.image-width {
     height: 300px;
-    max-height:400px;
-    width:auto;
+    max-height: 400px;
+    width: auto;
 
 }
-.align-left-object{
-    left:0px;
+
+.align-left-object {
+    left: 0px;
 }
 
 .price {
@@ -69,4 +71,28 @@ nav.side-navbar ul li a:hover {
     font-family: "Poppins", sans-serif;
     font-size: xx-large;
 }
-.top-buffer { margin-top:20px; }
+
+.top-buffer {
+    margin-top: 20px;
+}
+
+header.page-header {
+    padding: 15px 0;
+}
+
+table.error-table td {
+    vertical-align: top;
+    border: solid 1px #888;
+    padding: 10px;
+}
+
+.error-image {
+    margin-top: 100px;
+    /*object-fit: cover;*/
+    width: 250px;
+    height: 350px;
+}
+
+span.font-white {
+    color: white;
+}
