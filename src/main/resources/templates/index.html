@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="fragments::links">
-  </head>
+<head th:replace="fragments::links">
+</head>
 
   <body>
     <div class="page">
@@ -15,10 +15,7 @@
 
         <div class="content-inner">
           <!-- Page Header-->
-          <header class="page-header">
-            <div class="container-fluid">
-              <h2 class="no-margin-bottom">Bread-crumbs<!-- TODO DELETE SPAN--><span th:text="${loggedInUserDTO} + ' ::: ' + ${loggedInPrincipal}"></span></h2>
-            </div>
+          <header th:replace="fragments::secondary-header">
           </header>
           <!-- Dashboard Counts Section-->
           <section class="dashboard-counts no-padding-bottom">

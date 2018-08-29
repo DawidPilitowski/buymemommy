@@ -32,7 +32,7 @@ public class IndexController {
         String loggedInUserName = "difolt";
         String loggedInPrincipal = "difolt";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null){
+        if (authentication != null) {
             loggedInUserName = authentication.getName();
             loggedInPrincipal = authentication.getPrincipal().toString();
         }
@@ -47,6 +47,24 @@ public class IndexController {
         model.addAttribute("loggedUserDto", new LoggedUserDto("Bruce", "Wayne", "/img/batman.jpg"));
         return "index";
     }
+
+    // TODO : REMOVE --->
+    @GetMapping(path = "/logtest")
+    public String getLoginPage() {
+        return "login";
+    }
+
+    @GetMapping(path = "/registertest")
+    public String getRegisterPage() {
+        return "register";
+    }
+
+    @GetMapping(path = "/tabelki")
+    public String getTables() {
+        return "itemList.html";
+    }
+
+    // TODO : <--- REMOVE
 
     @GetMapping(path = "/charts")
     public String getCharts() {

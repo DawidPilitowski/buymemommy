@@ -10,14 +10,15 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pl.sda.buymemommy.service.AppUserDetailsService;
 
 @Configuration
 public class BasicSecurity extends WebSecurityConfigurerAdapter {
-
-    //TODO podwiązać servis do kodowania hasła!!
     @Autowired
     private AppUserDetailsService appUserDetailsService;
 
@@ -26,52 +27,52 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    //TODO do sprawdzenia i zmienienia
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-
-        http.formLogin()
+        http.authorizeRequests()
+                .anyRequest()
+                .permitAll()
+                .and().formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/profile")
-                .usernameParameter("username")
-                .passwordParameter("password");
-
-        http.logout()
-                .logoutUrl("/user/logout")
-                .logoutSuccessUrl("/user/login")
-                .invalidateHttpSession(true)
-                .clearAuthentication(true);
-
-//        http.authorizeRequests()
-//                .antMatchers(
-//                        "/",
-//                        "/about",
-//                        "/register",
-//                        "/webjars/**",
-//                        "/css/**").permitAll()
-//                .anyRequest()
-//                .authenticated()
-////                .antMatchers(HttpMethod.POST, "/admin/**").hasRole("ADMIN")
-//                .and().formLogin()
-//                .loginPage("/login")
-//                .defaultSuccessUrl("/")
-//                .permitAll()
-//                .and().logout()
-//                .clearAuthentication(true)
-//                .logoutUrl("/logout")
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .logoutSuccessUrl("/")
-//                .invalidateHttpSession(true);
+                .defaultSuccessUrl("/")
+                .permitAll()
+                .and().logout()
+                .clearAuthentication(true)
+                .logoutUrl("/logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true);
     }
+//        http.csrf().disable();
 
-    //TODO podwiązać servis !!
+// TODO : Zmienic konfiguracje
+//    @Override
+////    protected void configure(HttpSecurity http) throws Exception {
+////        http.authorizeRequests()
+////                .antMatchers(
+////                        "/",
+////                        "/about",
+////                        "/register",
+////                        "/webjars/**",
+////                        "/css/**").permitAll()
+////                .anyRequest()
+////                .authenticated()
+//////                .antMatchers(HttpMethod.POST, "/admin/**").hasRole("ADMIN")
+////                .and().formLogin()
+////                .loginPage("/login")
+////                .defaultSuccessUrl("/")
+////                .permitAll()
+////                .and().logout()
+////                .clearAuthentication(true)
+////                .logoutUrl("/logout")
+////                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+////                .logoutSuccessUrl("/")
+////                .invalidateHttpSession(true);
+////    }
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider daoAuthenticationProvider =
-                new DaoAuthenticationProvider();
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
         daoAuthenticationProvider.setUserDetailsService(appUserDetailsService);
         return daoAuthenticationProvider;
@@ -80,6 +81,5 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
-//    }
     }
 }

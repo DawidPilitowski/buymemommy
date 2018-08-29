@@ -3,15 +3,16 @@
 <head th:fragment="links">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title th:if="${title} == null">Title unknown</title>
+    <title th:if="${title} == null">[UNKNOWN] buymemommy.com</title>
     <title th:if="${title} != null" th:text="${title}"></title>
-    <meta name="description" content="">
+    <meta name="description" content="Najlepsza pomoc zabieganej mamy! Przyjazny sklep z największym wyborem zabawek dla Twojego dziecka.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/fontastic.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker">
     <link rel="stylesheet" href="/css/style.blue.css" id="theme-stylesheet">
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="shortcut icon" href="/static/img/favicon.ico">
@@ -25,8 +26,8 @@
             <!-- Search Box-->
             <div class="search-box">
                 <button class="dismiss"><i class="icon-close"></i></button>
-                <form id="searchForm" th:action="@{/searchItem}" th:object="${searchItemDto}" role="search">
-                    <input type="search" placeholder="Szukaj..." class="form-control">
+                <form id="searchForm" th:action="@{/item/itemListSearch}" role="search">
+                    <input type="search" name="phrase" placeholder="Szukaj..." class="form-control">
                 </form>
             </div>
             <div class="container-fluid">
@@ -159,9 +160,9 @@
             <!-- Sidebar Navigation Menus-->
             <span class="heading">Kategorie</span>
             <ul class="list-unstyled">
-                <li th:each="mainCategory : ${categories}"><a th:href="'#'+${mainCategory.key.getNameCategory()}" aria-expanded="false" data-toggle="collapse"><!--<i th:class="${category.getCategoryIcon}"></i>--><span class="categories" th:text="${mainCategory.key.getNameCategory()}"></span></a> <!-- TODO : OBSLUGE IKON DODAC-->
-                    <ul th:id="${mainCategory.key.getNameCategory()}" class="collapse list-unstyled">
-                        <li th:each="subcategory: ${mainCategory.value}"><a th:href="@{'/itemList/' + ${mainCategory.key.getNameCategory()} + '/' + ${subcategory.getName()}}" th:text="${subcategory.getName()}"></a></li> <!-- TODO : NIESTETY NIE MA W KATEGORII PRZECHOWYWANYCH SUBKATEGORII -->
+                <li th:each="mainCategory : ${categories}"><a th:href="'#'+${mainCategory.key.getURN()}" aria-expanded="false" data-toggle="collapse"><!--<i th:class="${category.getCategoryIcon}"></i>--><span class="categories" th:text="${mainCategory.key.getNameCategory()}"></span></a> <!-- TODO : OBSLUGE IKON DODAC-->
+                    <ul th:id="${mainCategory.key.getURN()}" class="collapse list-unstyled">
+                        <li th:each="subcategory: ${mainCategory.value}"><a th:href="@{'/item/itemListSearch?main=' + ${mainCategory.key.getNameCategory()} + '&sub=' + ${subcategory.getName()}}" th:text="${subcategory.getName()}"></a></li>
                     </ul>
                 </li>
             </ul>
@@ -172,9 +173,9 @@
         </nav>
         <div class="content-inner">
             <!-- Page Header-->
-            <header class="page-header">
+            <header th:fragment="secondary-header" class="page-header">
                 <div class="container-fluid">
-                    <h2 class="no-margin-bottom">Bread-crumbs</h2>
+                    <h2 class="no-margin-bottom">Tytuł <!-- TODO DELETE SPAN--><span th:text="${loggedInUserDTO} + ' ::: ' + ${loggedInPrincipal}"></span></h2>
                 </div>
             </header>
 
