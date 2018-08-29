@@ -7,8 +7,33 @@
 
 <div class="container marketing">
     <div class="row">
-        <form th:action="@{/login}" method="post">
-            hello
+        <form th:action="@{/oldLogin}" method="post">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="username">Login:</label>
+                </div>
+                <div class="col-md-5">
+                    <input class="form-control" id="username" name="username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="password">Hasło:</label>
+                </div>
+                <div class="col-md-5">
+                    <input class="form-control" id="password" type="password" name="password">
+                </div>
+            </div>
+            <div th:if="${error_message} != null" class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <p class="error_message" th:text="${error_message}"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-5">
+                    <input class="form-control" type="submit" th:value="Zatwierdź">
+                </div>
+            </div>
         </form>
     </div>
 </div>

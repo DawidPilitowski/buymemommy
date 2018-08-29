@@ -1,17 +1,18 @@
 package pl.sda.buymemommy.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
 
 @Entity
 @Data
+@AllArgsConstructor
+//@NoArgsConstructor
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +22,9 @@ public class AppUser {
 
     private String name;
     private String surname;
-    private String userSurname;
     private String address;
+    private String email;
+    private String role = "ROLE_USER";
 
     private LocalDate registerDate;
 
@@ -30,6 +32,11 @@ public class AppUser {
         this.username = username;
         this.password = password;
     }
+
+    public Boolean isAdmin() {
+        return this.role.equals("ROLE_ADMIN");
+    }
+
 
     //todo WISHLIST
 //    @OneToMany
