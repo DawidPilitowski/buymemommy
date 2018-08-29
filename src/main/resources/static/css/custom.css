@@ -29,7 +29,7 @@ nav.navbar .menu-btn span:nth-of-type(2)::before {
     background: black;
 }
 
-i.icon-search, i.fa-bell-o, i.fa-envelope-o, i.fa-sign-out, span.d-sm-inline {
+i.icon-search, i.fa-bell-o, i.fa-envelope-o, i.fa-sign-out, i.fa-sign-in, span.d-sm-inline, i.fa-user-plus, i.fa-bars, i.fa-list-ul, i.fa-shopping-cart, i.fa-user {
     color: black;
 }
 

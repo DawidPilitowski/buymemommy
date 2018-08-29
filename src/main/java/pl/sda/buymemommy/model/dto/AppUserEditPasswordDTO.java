@@ -2,15 +2,11 @@ package pl.sda.buymemommy.model.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppUserRegisterDTO {
-
-    private String username;
+public class AppUserEditPasswordDTO {
+    private Long id;
     private String password;
-    private String email;
     private String confirm_password;
-
 }
