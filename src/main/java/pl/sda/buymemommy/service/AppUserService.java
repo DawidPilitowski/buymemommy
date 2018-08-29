@@ -35,21 +35,12 @@ public class AppUserService {
         return appUserRepository.findOneByUsername(username);
     }
 
-
     public AppUser getLoggedInUser() {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         return appUserRepository.findOneByUsername(name);
     }
 
-//    public void updateUser(String loggedInUsername, AppUser modifiedUser) {
-//        updateUser(loggedInUsername, modifiedUser);
-//    }
-//
-//    public void updateUser(AppUser newData) {
-//        appUserRepository.save(newData);
-//    }
-
-    public void updateUserDTO(AppUserEditProfileDTO modifyUserDTO) {
+    public void updateUserDTO(AppUserEditProfileDTO modifyUserDTO, byte[] bytes) {
         Long id = modifyUserDTO.getId();
 
         Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
@@ -60,15 +51,15 @@ public class AppUserService {
             appUser.setName(modifyUserDTO.getName());
             appUser.setEmail(modifyUserDTO.getEmail());
             appUser.setSurname(modifyUserDTO.getSurname());
+            appUser.setBankNumberAccount(modifyUserDTO.getBankNumberAccount());
+            appUser.setAvatar(bytes);
 
             appUserRepository.save(appUser);
         }
-
     }
-
-    public void deleteUser(Long id) {
-        appUserRepository.deleteById(id);
-    }
+//    public void deleteUser(Long id) {
+//        appUserRepository.deleteById(id);
+//    }
 
     public Optional<AppUser> find(Long id) {
         return appUserRepository.findById(id);
@@ -81,5 +72,4 @@ public class AppUserService {
         appUserRepository.deleteById(id);
     }
 
-//    rejestracja użytkownika
 }

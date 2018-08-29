@@ -2,6 +2,8 @@ package pl.sda.buymemommy.model.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,5 +14,6 @@ public class AppUserRegisterDTO {
     private String password;
     private String email;
     private String confirm_password;
+
 
 }

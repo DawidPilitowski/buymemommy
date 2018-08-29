@@ -3,10 +3,9 @@ package pl.sda.buymemommy.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -25,8 +24,12 @@ public class AppUser {
     private String address;
     private String email;
     private String role = "ROLE_USER";
+    private String bankNumberAccount;
 
-    private LocalDate registerDate;
+    @Lob
+    @Column
+    private byte[] avatar;
+
 
     public AppUser(String username, String password) {
         this.username = username;
@@ -37,10 +40,8 @@ public class AppUser {
         return this.role.equals("ROLE_ADMIN");
     }
 
+    //TODO WISHLIST
 
-    //todo WISHLIST
-//    @OneToMany
-//    private Map<Item,id> wishList;
-//    private List<Item> wishList;
+
 
 }
