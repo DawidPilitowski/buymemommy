@@ -3,6 +3,7 @@ package pl.sda.buymemommy.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.buymemommy.model.Category;
+import pl.sda.buymemommy.model.Gender;
 import pl.sda.buymemommy.model.Item;
 import pl.sda.buymemommy.repository.ItemRepository;
 
@@ -67,11 +68,16 @@ public class ItemService {
         return itemRepository.findAllByAgeFromGreaterThan(age);
     }
 
-    public List<Item> searchBy(List<Category> categories, String phrase, int ageFrom) {
+    public List<Item> searchBy(List<Category> categories, String phrase, int ageFrom, Gender gender) {
         List<Item> joinedItems = new ArrayList<>();
         for (Category c : categories) {
-            joinedItems.addAll(itemRepository.findAllByAgeFromGreaterThanAndCategoryListAndItemNameContains(
-                    ageFrom, Arrays.asList(c), phrase));
+            if(gender ==null) {
+                joinedItems.addAll(itemRepository.findAllByAgeFromGreaterThanAndCategoryListAndItemNameContains(
+                        ageFrom, Arrays.asList(c), phrase));
+            }else{
+                joinedItems.addAll(itemRepository.findAllByAgeFromGreaterThanAndCategoryListAndItemNameContainsAndGender(
+                        ageFrom, Arrays.asList(c), phrase, gender));
+            }
         }
         return joinedItems;
     }

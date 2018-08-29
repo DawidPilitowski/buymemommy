@@ -29,6 +29,9 @@ public class Item {
     @Column
     private byte[] image;
 
+    @ManyToOne
+    private AppUser sellingUser ;
+
     @ManyToMany
     List<Category> categoryList;
 }
