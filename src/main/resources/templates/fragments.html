@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title th:if="${title} == null">unknown</title>
     <title th:if="${title} != null" th:text="${title}"></title>
-    <meta name="description"
-          content="Najlepsza pomoc zabieganej mamy! Przyjazny sklep z największym wyborem zabawek dla Twojego dziecka.">
+    <meta name="description" content="Najlepsza pomoc zabieganej mamy! Przyjazny sklep z największym wyborem zabawek dla Twojego dziecka.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
@@ -36,20 +35,17 @@
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <!-- Navbar Header-->
                     <div class="navbar-header">
-                        <!-- Navbar Brand -->
-                        <a th:href="@{/}" class="navbar-brand d-none d-sm-inline-block">
-                            <div class="brand-text d-none d-lg-inline-block">
-                                <span><i>buymemommy.com</i></span></div>
-                            <div class="brand-text d-none d-sm-inline-block d-lg-none"><i>buymemommy</i></div>
-                        </a>
+                        <!-- Navbar Brand --><a th:href="@{/}" class="navbar-brand d-none d-sm-inline-block">
+                        <div class="brand-text d-none d-lg-inline-block">
+                            <span><i>buymemommy.com</i></span></div>
+                        <div class="brand-text d-none d-sm-inline-block d-lg-none"><i>buymemommy.com</i></div>
+                    </a>
                         <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><i class="fa fa-bars"></i></a>
                     </div>
                     <!-- Navbar Menu -->
                     <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                         <!-- Search-->
-                        <li class="nav-item d-flex align-items-center"><a id="search" href="#"
-                                                                          class="nav-link logout"><span
-                                class="d-none d-sm-inline">Szukaj</span><i
+                        <li class="nav-item d-flex align-items-center"><a id="search" href="#" class="nav-link logout"><span class="d-none d-sm-inline">Szukaj</span><i
                                 class="icon-search"></i></a></li>
                         <!--&lt;!&ndash; Messages                        &ndash;&gt;
                         <li class="nav-item dropdown"><a id="messages" rel="nofollow" data-target="#" href="#"
@@ -83,17 +79,13 @@
                             </ul>
                         </li>-->
                         <!-- Logout    -->
-                        <li sec:authorize="isAnonymous()" class="nav-item"><a th:href="@{/login}"
-                                                                              class="nav-link logout"> <span
+                        <li sec:authorize="isAnonymous()" class="nav-item"><a th:href="@{/login}" class="nav-link logout"> <span
                                 class="d-none d-sm-inline">Logowanie</span><i class="fa fa-sign-in"></i></a></li>
-                        <li sec:authorize="isAnonymous()" class="nav-item"><a th:href="@{/register}"
-                                                                              class="nav-link logout"> <span
+                        <li sec:authorize="isAnonymous()" class="nav-item"><a th:href="@{/register}" class="nav-link logout"> <span
                                 class="d-none d-sm-inline">Rejestracja</span><i class="fa fa-user-plus"></i></a></li>
-                        <li sec:authorize="isAuthenticated()" class="nav-item"><a th:href="@{/profile}"
-                                                                                  class="nav-link logout"> <span
+                        <li sec:authorize="isAuthenticated()" class="nav-item"><a th:href="@{/profile}" class="nav-link logout"> <span
                                 class="d-none d-sm-inline">Profil</span><i class="fa fa-user"></i></a></li>
-                        <li sec:authorize="isAuthenticated()" class="nav-item"><a th:href="@{/logout}"
-                                                                                  class="nav-link logout"> <span
+                        <li sec:authorize="isAuthenticated()" class="nav-item"><a th:href="@{/logout}" class="nav-link logout"> <span
                                 class="d-none d-sm-inline">Wyloguj</span><i class="fa fa-sign-out"></i></a></li>
                     </ul>
                 </div>
@@ -124,15 +116,9 @@
             <!-- Sidebar Navigation Menus-->
             <span class="heading">Kategorie</span>
             <ul class="list-unstyled">
-                <li th:each="mainCategory : ${categories}"><a th:href="'#'+${mainCategory.key.getURN()}"
-                                                              aria-expanded="false" data-toggle="collapse">
-                    <!--<i th:class="${category.getCategoryIcon}"></i>--><span class="categories"
-                                                                               th:text="${mainCategory.key.getNameCategory()}"></span></a>
-                    <!-- TODO : OBSLUGE IKON DODAC-->
+                <li th:each="mainCategory : ${categories}"><a th:href="'#'+${mainCategory.key.getURN()}" aria-expanded="false" data-toggle="collapse"><!--<i th:class="${category.getCategoryIcon}"></i>--><span class="categories" th:text="${mainCategory.key.getNameCategory()}"></span></a> <!-- TODO : OBSLUGE IKON DODAC-->
                     <ul th:id="${mainCategory.key.getURN()}" class="collapse list-unstyled">
-                        <li th:each="subcategory: ${mainCategory.value}"><a
-                                th:href="@{'/item/itemListSearch?main=' + ${mainCategory.key.getNameCategory()} + '&sub=' + ${subcategory.getName()}}"
-                                th:text="${subcategory.getName()}"></a></li>
+                        <li th:each="subcategory: ${mainCategory.value}"><a th:href="@{'/item/itemListSearch?main=' + ${mainCategory.key.getNameCategory()} + '&sub=' + ${subcategory.getName()}}" th:text="${subcategory.getName()}"></a></li>
                     </ul>
                 </li>
             </ul>

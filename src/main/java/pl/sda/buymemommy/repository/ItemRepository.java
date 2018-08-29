@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pl.sda.buymemommy.model.Category;
+import pl.sda.buymemommy.model.Gender;
 import pl.sda.buymemommy.model.Item;
 
 import java.util.List;
@@ -24,9 +25,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     List<Item> findAllByAgeFromGreaterThan (int age);
 
+    List<Item> findAllByAgeFromGreaterThanAndCategoryListAndItemNameContainsAndGender(int age, List<Category> categories, String word, Gender gender);
     List<Item> findAllByAgeFromGreaterThanAndCategoryListAndItemNameContains(int age, List<Category> categories, String word);
 }
-//    @Query("SELECT Item from item where item_name like :nameL%")
-//    public List<Item> findByItemNameLike(@Param("nameL")String nameLike);
 
-//    List<Item> findAllByItemNameLike(String nameLike);

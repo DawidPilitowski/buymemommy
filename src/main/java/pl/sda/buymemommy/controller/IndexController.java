@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Controller
 @ControllerAdvice
+@Scope("session")
 public class IndexController {
     @Autowired
     private CategoryComponent categoryComponent;
@@ -76,6 +78,12 @@ public class IndexController {
     public String getIndex2() {
         return "index";
     }
+
+    @GetMapping(path = "/forms")
+    public String getPath(){
+        return "forms";
+    }
+
 
     // TODO : USUNAC, stworzyc klasy
 
