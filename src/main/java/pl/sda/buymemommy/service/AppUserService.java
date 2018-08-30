@@ -8,6 +8,7 @@ import pl.sda.buymemommy.model.AppUser;
 import pl.sda.buymemommy.model.dto.AppUserEditPasswordDTO;
 import pl.sda.buymemommy.model.dto.AppUserEditProfileDTO;
 import pl.sda.buymemommy.model.dto.AppUserRegisterDTO;
+import pl.sda.buymemommy.model.dto.LoggedInUserDTO;
 import pl.sda.buymemommy.repository.AppUserRepository;
 
 import java.util.Optional;
@@ -72,4 +73,21 @@ public class AppUserService {
         appUserRepository.deleteById(id);
     }
 
+    public Optional<LoggedInUserDTO> getLoggedInUserDTO() {
+        LoggedInUserDTO loggedInUserDTO = null;
+        String loggedInUserName = getLoggedInUserName();
+        Optional<AppUser> optionalLoggedInUser = appUserRepository.findByUsername(loggedInUserName);
+        if(optionalLoggedInUser.isPresent()) {
+            AppUser loggedInUser = optionalLoggedInUser.get();
+            loggedInUserDTO = new LoggedInUserDTO();
+            loggedInUserDTO.setId(loggedInUser.getId());
+            loggedInUserDTO.setUsername(loggedInUser.getUsername());
+            loggedInUserDTO.setAvatar(loggedInUser.getAvatar());
+        }
+        return Optional.ofNullable(loggedInUserDTO);
+    }
+
+    private String getLoggedInUserName() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
 }

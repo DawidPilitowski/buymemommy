@@ -124,7 +124,7 @@ public class AppUserController {
 //            appUserService.updateUser(appUserService.getLoggedInUser().getUsername(), user);
 //        }
 
-        return "redirect:/profile";
+        return "redirect:/";
     }
 
     @GetMapping(path = "/profile")
