@@ -36,6 +36,7 @@ public class IndexController {
         if (authentication != null) {
             loggedInUserName = authentication.getName();
         }
+        model.addAttribute("authentication",authentication);
         model.addAttribute("loggedInUserDTO", loggedInUserName);
         // TODO <---
     }
