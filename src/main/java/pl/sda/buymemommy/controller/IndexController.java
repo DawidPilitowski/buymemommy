@@ -55,7 +55,30 @@ public class IndexController {
 
         return "index";
     }
-
+    @GetMapping(path = "/about")
+    public String getAboutSite (){
+        return "about";
+    }
+    @GetMapping(path = "/rules")
+    public String getRulesSite () {
+        return "rules";
+    }
+    @GetMapping(path = "/help")
+    public String getHelpSite () {
+        return "help";
+    }
+    @GetMapping(path = "/contact")
+    public String getContactSite () {
+        return "contact";
+    }
+    @GetMapping(path = "/faq")
+    public String getFaqSite () {
+        return "faq";
+    }
+    @GetMapping(path = "/others")
+    public String getOthersSite () {
+        return "others";
+    }
     // TODO : REMOVE --->
     @GetMapping(path = "/logtest")
     public String getLoginPage() {

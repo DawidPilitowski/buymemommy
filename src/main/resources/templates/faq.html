@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::links">
+    <title>Regulamin</title>
+</head>
+
+
+<body>
+<div class="page">
+    <!-- Main Navbar-->
+    <header th:replace="fragments::header">
+    </header>
+
+    <div class="page-content d-flex align-items-stretch">
+        <!-- Side Navbar -->
+        <nav th:replace="fragments::sidebar">
+        </nav>
+
+        <div class="content-inner">
+            <!-- Page Header-->
+            <header th:replace="fragments::secondary-header">
+            </header>
+            <!-- Breadcrumb-->
+            <div class="breadcrumb-holder container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Tables</li>
+                </ul>
+            </div>
+            <section>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header d-flex align-items-center">
+                                    <h3 class="h4">NAJCZĘŚCIEJ ZADAWANE PYTANIA?</h3>
+                                </div>
+                                <div class="card-body row">
+                                    <div class="autor col-md-12" th:align="center">
+                                        <h5>NAJCZĘŚCIEJ ZADAWANE PYTANIA?</h5><br>
+<br>
+                                        <i><p><u>Jak długo trwa realizacji zamówienia?</u></i><br>
+                                        Jeśli produkt jest dostępny od ręki, realizacja zamówienia rozpoczyna się po zaakceptowaniu wpłaty i zmianie statusu zamówienia na "KOMPLETOWANE" w ciągu 48h. Wysyłka kurierem trwa 48h w dni robocze, natomiast Pocztą Polską (priorytetem) - około 3-5 dni roboczych.<br>
+                                        <i><u>Jakie są koszty wysyłki w Polsce ?</u></i><br>
+                                        Wysyłka Pocztą Polską na terenie kraju - 11 zł. Kurier - 14 zł za jedną paczkę. Korzystamy z usług firmy kurierskiej GLS. Podane koszty dotyczą wysyłek krajowych.<br>
+Formy płatności<br>
+                                        Oferujemy następujące sposoby płatności za zamówione produkty:<br>
+                                        a) przelew (przedpłata): należność za zamówienie zostanie przekazana na rachunek bankowy sklepu podany w e-mailu potwierdzającym złożenie zamówienia.<br>
+                                        b) płatność online za pośrednictwem systemu Przelewy24. W przypadku odrzucenia transakcji prosimy o bezpośredni kontakt z Przelewy24: https://www.przelewy24.pl/kontakt<br>
+                                            c) płatność gotówką lub kartą płatniczą za zamówienia on-line przy ul.Klimczaka 1, Warszawa.<br>
+                                        *Zasady dokonywania płatności przez Klientów za pośrednictwem Systemu Przelewy24 oraz postępowanie reklamacyjne dostępne są na stronie https://www.przelewy24.pl.<br>
+                                        Pragniemy jednocześnie poinformować, że nie prowadzimy sprzedaży za pobraniem.<br>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div th:replace="fragments::footer"></div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
