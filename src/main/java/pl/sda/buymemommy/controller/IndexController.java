@@ -32,15 +32,12 @@ public class IndexController {
         model.addAttribute("categories", categoryMap);
         // TODO --->
         String loggedInUserName = "difolt";
-        String loggedInPrincipal = "difolt";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             loggedInUserName = authentication.getName();
-            loggedInPrincipal = authentication.getPrincipal().toString();
         }
         model.addAttribute("authentication",authentication);
         model.addAttribute("loggedInUserDTO", loggedInUserName);
-        model.addAttribute("loggedInPrincipal", loggedInPrincipal);
         // TODO <---
     }
 
