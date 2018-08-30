@@ -38,7 +38,7 @@
                         <!-- Navbar Brand --><a th:href="@{/}" class="navbar-brand d-none d-sm-inline-block">
                         <div class="brand-text d-none d-lg-inline-block">
                             <span><i>buymemommy.com</i></span></div>
-                        <div class="brand-text d-none d-sm-inline-block d-lg-none"><i>buymemommy.com</i></div>
+                        <div class="brand-text d-none d-sm-inline-block d-lg-none"><i>buymemommy</i></div>
                     </a>
                         <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><i class="fa fa-bars"></i></a>
                     </div>
@@ -98,15 +98,14 @@
         <!-- Side Navbar -->
         <nav th:fragment="sidebar" class="side-navbar">
             <!-- Sidebar Header-->
-            <div th:if="${loggedUserDto} != null" class="sidebar-header d-flex align-items-center">
-                <div class="avatar"><img th:src="${loggedUserDto.getAvatarUrl()}" alt="avatar"
-                                         class="img-fluid rounded-circle"></div>
+            <div th:if="${!'anonymousUser'.equals(loggedInUserDTO)}" class="sidebar-header d-flex align-items-center">
+                <div class="avatar"><img th:src="@{/img/guest.jpg}" alt="avatar" class="img-fluid rounded-circle"></div>
                 <div class="title">
-                    <h1 class="h4" th:text="'Witaj, ' + ${loggedUserDto.getUsername()}"></h1>
+                    <h1 class="h4" th:text="'Witaj, ' + ${loggedInUserDTO}"></h1>
                     <p>Jak Ci mija dzień?</p>
                 </div>
             </div>
-            <div th:if="${loggedUserDto} == null" class="sidebar-header d-flex align-items-center">
+            <div th:if="${'anonymousUser'.equals(loggedInUserDTO)}" class="sidebar-header d-flex align-items-center">
                 <div class="avatar"><img src="/img/guest.jpg" alt="guest avatar" class="img-fluid rounded-circle"></div>
                 <div class="title">
                     <h1 class="h4">Witaj, gościu</h1>
@@ -122,10 +121,10 @@
                     </ul>
                 </li>
             </ul>
-            <span class="heading">Inne</span>
+<!--            <span class="heading">Inne</span>
             <ul class="list-unstyled">
                 <li><a href="#"> <i class="icon-flask"></i>Promocje </a></li>
-            </ul>
+            </ul>-->
         </nav>
         <div class="content-inner">
             <!-- Page Header-->
