@@ -52,7 +52,7 @@ public class IndexController {
     @GetMapping(path = "/")
     public String getIndex(Model model) {
         model.addAttribute("title", "buymemommy");
-        model.addAttribute("loggedUserDto", new LoggedUserDto("Bruce", "Wayne", "/img/batman.jpg"));
+
         return "index";
     }
 
@@ -87,17 +87,5 @@ public class IndexController {
     @GetMapping(path = "/forms")
     public String getPath(){
         return "forms";
-    }
-
-
-    // TODO : USUNAC, stworzyc klasy
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    private class LoggedUserDto {
-        private String username;
-        private String surname;
-        private String avatarUrl;
     }
 }
