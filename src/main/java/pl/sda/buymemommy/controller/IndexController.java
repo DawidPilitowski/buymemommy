@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.sda.buymemommy.components.CategoryComponent;
 import pl.sda.buymemommy.model.MainCategory;
 import pl.sda.buymemommy.model.Subcategory;
+import pl.sda.buymemommy.model.dto.LoggedInUserDTO;
+import pl.sda.buymemommy.service.AppUserService;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @ControllerAdvice
@@ -25,20 +29,24 @@ import java.util.List;
 public class IndexController {
     @Autowired
     private CategoryComponent categoryComponent;
+    @Autowired
+    private AppUserService appUserService;
 
     @ModelAttribute
     public void addAttributes(Model model) {
         HashMap<MainCategory, List<Subcategory>> categoryMap = categoryComponent.getCategoryMap();
         model.addAttribute("categories", categoryMap);
-        // TODO --->
-        String loggedInUserName = "difolt";
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            loggedInUserName = authentication.getName();
+
+        Optional<LoggedInUserDTO> optionalLoggedInUserDTO = appUserService.getLoggedInUserDTO();
+        if(optionalLoggedInUserDTO.isPresent()) {
+            LoggedInUserDTO loggedInUserDTO = optionalLoggedInUserDTO.get();
+            model.addAttribute("loggedInUserDTO", loggedInUserDTO);
+            model.addAttribute("loggedInUserAvatar", loggedInUserDTO.getAvatar() == null ? "" : new String(Base64.getEncoder().encode(loggedInUserDTO.getAvatar())));
+            // TODO : USUNAC Z KODU --->
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            model.addAttribute("authentication", authentication);
+            // TODO : <---
         }
-        model.addAttribute("authentication",authentication);
-        model.addAttribute("loggedInUserDTO", loggedInUserName);
-        // TODO <---
     }
 
     @GetMapping(path = "/")
