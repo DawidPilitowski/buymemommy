@@ -11,6 +11,7 @@ import pl.sda.buymemommy.model.Category;
 import pl.sda.buymemommy.model.Gender;
 import pl.sda.buymemommy.model.Item;
 import pl.sda.buymemommy.model.dto.ItemDTO;
+import pl.sda.buymemommy.service.AppUserService;
 import pl.sda.buymemommy.service.CategoryService;
 import pl.sda.buymemommy.service.ItemService;
 
@@ -34,6 +35,9 @@ public class ItemController {
 
     @Autowired
     private CategoryComponent categoryComponent;
+
+    @Autowired
+    private AppUserService appUserService;
 
     @GetMapping(path = "/itemList")
     public String itemList(Model model) {
@@ -79,6 +83,9 @@ public class ItemController {
     @GetMapping(path = "/addItem")
     public String add(Model model) {
         Item item = new Item();
+        System.out.println(appUserService.getLoggedInUser().getUsername());
+        item.setSellingUserName(appUserService.getLoggedInUser().getUsername());
+        System.out.println(item.getSellingUserName());
         List<Category> categories = categoryService.getAllList();
         model.addAttribute("item", item);
         model.addAttribute("categories2", categories);
@@ -97,6 +104,7 @@ public class ItemController {
         } catch (Exception e) {
             System.out.println("File has not been added.");
         }
+        System.out.println(item.getSellingUserName());
         itemService.save(item);
         return "redirect:/item/itemList";
     }

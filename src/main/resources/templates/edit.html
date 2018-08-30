@@ -8,19 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="all,follow">
   <!-- Bootstrap CSS-->
-  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome CSS-->
-  <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
   <!-- Fontastic Custom icon font-->
-  <link rel="stylesheet" href="css/fontastic.css">
+  <link rel="stylesheet" href="/css/fontastic.css">
   <!-- Google fonts - Poppins -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
   <!-- theme stylesheet-->
-  <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+  <link rel="stylesheet" href="/css/style.default.css" id="theme-stylesheet">
   <!-- Custom stylesheet - for your changes-->
-  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="/css/custom.css">
   <!-- Favicon-->
-  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="shortcut icon" href="/img/favicon.ico">
   <!-- Tweaks for older IEs--><!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -31,17 +31,13 @@
     <div class="form-holder has-shadow">
       <div class="row">
         <!-- Logo & Information Panel-->
-        <div>
-          <div class="brand-text d-none d-lg-inline-block">
-            <span><i><strong>buymemommy</strong>.com</i></span></div>
-        </div>
         <div class="col-lg-6">
           <div class="info d-flex align-items-center">
             <div class="content">
               <div class="logo">
-                <h1>Dashboard</h1>
+                <h1>Edycja użytkownika</h1>
               </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <p>Jeszcze tylko chwila...</p>
             </div>
           </div>
         </div>
@@ -49,34 +45,42 @@
         <div class="col-lg-6 bg-white">
           <div class="form d-flex align-items-center">
             <div class="content">
-              <form class="form-signin" th:action="@{'/edit/'+${userDTO.getId()}}" th:object="${userDTO}" method="post">
+              <form th:action="@{'/edit/'+${userDTO.getId()}}" th:object="${userDTO}" method="post" enctype="multipart/form-data" >
                 <div class="form-group">
-                  <input id="name" type="text" name="name" th:field="*{name}" required
-                         data-msg="Podaj swoje imie" class="input-material">
                   <label for="address" class="label-material">Podaj imię:</label>
+                  <input id="name" type="text" name="name" th:field="*{name}" required
+                         data-msg="Podaj swoje imie" class="form-control middle">
                 </div>
                 <div class="form-group">
-                  <input id="surname" type="text" name="surname" th:field="*{surname}" required
-                         data-msg="Podaj swoje nazwisko" class="input-material">
                   <label for="address" class="label-material">Podaj nazwisko:</label>
+                  <input id="surname" type="text" name="surname" th:field="*{surname}" required
+                         data-msg="Podaj swoje nazwisko" class="form-control middle">
                 </div>
                 <div class="form-group">
-                  <input id="email" type="email" name="email" th:field="*{email}" required
-                         data-msg="Podaj swój email" class="input-material">
                   <label for="email" class="label-material">Podaj email:</label>
+                  <input id="email" type="email" name="email" th:field="*{email}" required
+                         data-msg="Podaj swój email" class="form-control middle">
                 </div>
                 <div class="form-group">
-                  <input id="address" type="text" name="address" th:field="*{address}" required
-                         data-msg="Podaj swój adres" class="input-material">
                   <label for="address" class="label-material">Podaj adres:</label>
+
+                  <input id="address" type="text" name="address" th:field="*{address}" required
+                         data-msg="Podaj swój adres" class="form-control middle">
+                </div>
+                <div class="form-group">
+                  <label for="bankNumberAccount" class="label-material">Podaj numer konta:</label>
+                  <input id="bankNumberAccount" name="bankNumberAccount" th:field="*{bankNumberAccount}" class="form-control middle">
                 </div>
                 <div class="form-group">
                   <input id="id" type="hidden" name="id" th:field="*{id}" required>
                 </div>
+                <div class="form-group">
+                  <input class="form-control-file" id="photo" type="file" name="photo">
+                </div>
                 <!--<div class="form-group">-->
-                  <!--<input th:if="${error_message} != null" type="confirm-password"-->
-                         <!--name="confirm-password" th:field="*{confirm_password}">-->
-                  <!--<p class="error_message" th:text="${error_message}"></p>-->
+                <!--<input th:if="${error_message} != null" type="confirm-password"-->
+                <!--name="confirm-password" th:field="*{confirm_password}">-->
+                <!--<p class="error_message" th:text="${error_message}"></p>-->
                 <!--</div>-->
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary btn-block" th:value="Zatwierdź">
@@ -93,8 +97,7 @@
       </div>
     </div>
     <div class="copyrights text-center">
-      <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a>
-        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+      <p style="color: black">© 2018 Copyright: <a href="/" class="external"> buymemommy.com</a>
       </p>
     </div>
   </div>
