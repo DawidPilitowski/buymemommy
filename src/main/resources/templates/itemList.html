@@ -56,7 +56,7 @@
                                                 <td>
                                                     <p th:text="${item.getCategoryList().get(0).mainCategory.getNameCategory()} + ' ' + ${item.getCategoryList().get(0).subcategory.getName()}"></p>
                                                 </td>
-                                                <td><p th:text="${item.getPrice()}"></p></td>
+                                                <td><p th:text="${item.getPriceWithTrailingZeros() + ' zł'}"></p></td>
                                                 <td>
                                                     <div>
                                                         <button type="button" class="btn btn-default dropdown-toggle"
