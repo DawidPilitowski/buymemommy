@@ -38,6 +38,7 @@ public class IndexController {
             loggedInUserName = authentication.getName();
             loggedInPrincipal = authentication.getPrincipal().toString();
         }
+        model.addAttribute("authentication",authentication);
         model.addAttribute("loggedInUserDTO", loggedInUserName);
         model.addAttribute("loggedInPrincipal", loggedInPrincipal);
         // TODO <---
