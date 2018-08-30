@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Entity
@@ -33,4 +33,9 @@ public class Item {
 
     @ManyToMany
     List<Category> categoryList;
+
+    public String getPriceWithTrailingZeros() {
+        DecimalFormat df = new DecimalFormat("#####0.00");
+        return df.format(price);
+    }
 }
