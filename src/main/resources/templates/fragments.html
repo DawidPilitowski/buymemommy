@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="/css/fontastic.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker">
-    <link rel="stylesheet" href="/css/style.blue.css" id="theme-stylesheet">
+    <link rel="stylesheet" sec:authorize="hasRole('ROLE_ADMIN')" href="/css/style.pink.css" id="theme-stylesheet">
+    <link rel="stylesheet" sec:authorize="!hasRole('ROLE_ADMIN')" href="/css/style.blue.css" id="theme-stylesheet">
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="shortcut icon" href="/static/img/favicon.ico">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -38,7 +39,7 @@
                         <!-- Navbar Brand --><a th:href="@{/}" class="navbar-brand d-none d-sm-inline-block">
                         <div class="brand-text d-none d-lg-inline-block">
                             <span><i>buymemommy.com</i></span></div>
-                        <div class="brand-text d-none d-sm-inline-block d-lg-none"><i>buymemommy.com</i></div>
+                        <div class="brand-text d-none d-sm-inline-block d-lg-none"><i>buymemommy</i></div>
                     </a>
                         <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><i class="fa fa-bars"></i></a>
                     </div>
@@ -98,19 +99,21 @@
         <!-- Side Navbar -->
         <nav th:fragment="sidebar" class="side-navbar">
             <!-- Sidebar Header-->
-            <div th:if="${loggedUserDto} != null" class="sidebar-header d-flex align-items-center">
-                <div class="avatar"><img th:src="${loggedUserDto.getAvatarUrl()}" alt="avatar"
-                                         class="img-fluid rounded-circle"></div>
+            <div th:if="${loggedInUserDTO} == null" class="sidebar-header d-flex align-items-center">
+                <div class="avatar"><img th:src="@{/img/guest.png}" alt="avatar" class="img-fluid rounded-circle"></div>
                 <div class="title">
-                    <h1 class="h4" th:text="'Witaj, ' + ${loggedUserDto.getUsername()}"></h1>
-                    <p>Jak Ci mija dzień?</p>
+                    <h1 class="h4" th:text="'Gość'"></h1>
+                    <p><a href="/login">Logowanie</a> / <a href="/register">Rejestracja</a></p>
                 </div>
             </div>
-            <div th:if="${loggedUserDto} == null" class="sidebar-header d-flex align-items-center">
-                <div class="avatar"><img src="/img/guest.jpg" alt="guest avatar" class="img-fluid rounded-circle"></div>
+            <div th:if="${loggedInUserDTO} != null" class="sidebar-header d-flex align-items-center">
+                <div class="avatar">
+                    <img th:if="${''.equals(loggedInUserAvatar)}" th:src="@{/img/default.jpg}" alt="default avatar" class="img-fluid rounded-circle">
+                    <img th:if="${!''.equals(loggedInUserAvatar)}" th:src="${'data:image/png;base64,' + loggedInUserAvatar}" alt="guest avatar" class="img-fluid rounded-circle">
+                </div>
                 <div class="title">
-                    <h1 class="h4">Witaj, gościu</h1>
-                    <p><a href="/login">Logowanie</a> / <a href="/register">Rejestracja</a></p>
+                    <h1 class="h4" th:text="${'Witaj, ' + loggedInUserDTO.getUsername()}"></h1>
+                    <p>Jak Ci mija dzień?</p>
                 </div>
             </div>
             <!-- Sidebar Navigation Menus-->
@@ -122,10 +125,10 @@
                     </ul>
                 </li>
             </ul>
-            <span class="heading">Inne</span>
+<!--            <span class="heading">Inne</span>
             <ul class="list-unstyled">
                 <li><a href="#"> <i class="icon-flask"></i>Promocje </a></li>
-            </ul>
+            </ul>-->
         </nav>
         <div class="content-inner">
             <!-- Page Header-->
@@ -164,7 +167,7 @@
             <footer th:fragment="footer">
                 <footer class="page-footer font-small purple accent-2 pt-4">
                     <div class="container-fluid text-center text-md-left">
-                        <div class="row">
+                        <div class="row text-center">
                             <!--<div class="col-md-3 mb-md-0 mb-3">-->
                             <div class="col-md-1 mb-md-4 mb-3 flex-center">
                                 <a th:href="@{/about}">O NAS</a>
