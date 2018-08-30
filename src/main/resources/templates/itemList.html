@@ -67,7 +67,7 @@
                                                             <li><a th:href="@{'/item/details/' + ${item.getId()}}">Zobacz
                                                                 szczegóły</a></li>
                                                             <li sec:authorize="isAuthenticated()"><a
-                                                                    th:href="@{'/item/edit/' + ${item.getId()}}">Edytuj</a>
+                                                                    th:href="@{'/item/editItem/' + ${item.getId()}}">Edytuj</a>
                                                             </li>
                                                             <li sec:authorize="isAuthenticated()"><a
                                                                     th:href="@{'/item/remove/' + ${item.getId()}}">Usuń</a>
@@ -114,8 +114,8 @@
             </section>
 
 
-            <footer th:replace="fragments::footer">
-            </footer>
+            <div th:replace="fragments::footer">
+            </div>
         </div>
     </div>
 </div>

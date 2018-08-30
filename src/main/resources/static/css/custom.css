@@ -58,6 +58,7 @@ nav.side-navbar ul li a:hover {
     height: 300px;
     max-height:400px;
     width:auto;
+    max-width: 300px;
 
 }
 .align-left-object{
